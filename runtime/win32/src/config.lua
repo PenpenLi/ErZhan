@@ -61,8 +61,8 @@ CONFIG_SCREEN_AUTOSCALE_CALLBACK = function(screenWidthInPixels, screenHeightInP
     print("GLOBAL_HALL_UI_SCALE = "..tostring(GLOBAL_HALL_UI_SCALE))
 
 
-    local minScaleV     = screenWidthInPixels  / 1280
-    local minScaleH     = screenHeightInPixels / 720
+    local minScaleV     = screenWidthInPixels  / 750   -- 1280
+    local minScaleH     = screenHeightInPixels / 1334  -- 720
     local minScale      = minScaleV
     if minScaleH < minScale then minScale = minScaleH end
      GLOBAL_HALL_UI_SCALE2 = minScale

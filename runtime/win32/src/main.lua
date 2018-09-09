@@ -67,10 +67,10 @@ function __G__TRACKBACK__(errorMessage)
         print(a..b..c..a)
         LogToAndroid:WriteLog(a..b..c..a)
     end
-    --print("----------------------------------------")
-    --print("LUA ERROR: " .. tostring(errorMessage) .. "\n")
-    --print(debug.traceback("", 2))
-    --print("----------------------------------------")
+    print("----------------------------------------")
+    print("LUA ERROR: " .. tostring(errorMessage) .. "\n")
+    print(debug.traceback("", 2))
+    print("----------------------------------------")
 end
 
 package.path = package.path .. ";src/"

@@ -15,14 +15,43 @@ local orderHeros = GlobalData.getHeroOrder()
 function ItemStoreUI:ctor(self, finc, itemIndex)
     
     print("ItemStoreUI:ctor")
+    self._stepID = 0
     -- 关闭页面的回调函数
     self.finc = finc
     -- 需要默认选中第几个道具
     self.itemIndex = itemIndex
 
-    self.studioPage = import("ui.FightNode").create()
+    local clickBack = function(luaFileName,node,callbackName)  
+        print("callbackName = "..tostring(callbackName))
+        if callbackName == "clickEvent" then
+            return function ()
+                print("node:getName() = "..tostring(node:getName()))
+                if node:getName() == "Button_My_Card_5" and self._stepID == 1 then
+                    self:doStep(2)
+                end
+                if node:getName() == "skillBtn_2" then
+                    if self.autoSkillPro then
+                        viewMgr.show(viewMgr.def.TIPS_UI,1,self.autoSkillPro)
+                    end
+                end
+                if node:getName() == "skillBtn_3" then
+                    if self.passiveSkillPro then
+                        viewMgr.show(viewMgr.def.TIPS_UI,1,self.passiveSkillPro)
+                    end
+                end
+                local networkStr = WordLanguage.netWork
+                local curScence  = display.getRunningScene()
+                if node:getName() == "Image" then
+                    viewMgr.hide(viewMgr.def.Package_UI)
+                    return
+                end
+            end         
+        end      
+    end
+    self.studioPage = import("ui.FightNode.lua").create(clickBack)
     local itemStoreStudio = self.studioPage.root
-    
+   
+ 
     print("ItemStoreUI:ctor 1")
     -- --local path = utils.getName("sdfdf")
     -- itemStoreStudio:setTouchEnabled(true)
@@ -32,7 +61,16 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
     itemStoreStudio:setLocalZOrder(11)
 
     self.studioNode = itemStoreStudio
-    -- self.studioNode.onEnter = self:onEnter()
+    self.studioNode.onEnter = self:onEnter()
+    -- local function listener(event)
+    --     local name = event.name 
+    --     if name == "enter" then
+    --         self:onEnter()
+    --     elseif name == "exit" then
+    --         self:onExit()
+    --     end
+    -- end
+    -- self.studioNode:setNodeEventEnabled(true,listener)
 
     -- -- 获得Studio中的所有控件
     self:getAllElemets()
@@ -42,11 +80,137 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
     -- 做适配动画
     -- local panel = self.studioPage["bgBottom"]
     -- utils.playAction(self.studioNode, panel)
+
+    local function callBack(sender,eventType)
+        if self.showNextLv and self.showNextLv > 0 then return end
+        local name = sender:getName()
+        if eventType == ccui.TouchEventType.began then
+            if name == "Button_My_Card_5" then
+                print("click begin studioPage.Button_My_Card_5")
+            elseif name == "Button_hero" then
+                self.light_ach:setVisible(false)
+                self.light_hero:setVisible(true)
+                self.light_icon:setVisible(false)
+                self.light_item:setVisible(false)
+            elseif name == "Button_icon" then
+                self.light_ach:setVisible(false)
+                self.light_hero:setVisible(false)
+                self.light_icon:setVisible(true)
+                self.light_item:setVisible(false)
+            elseif name == "Button_item" then
+                self.light_ach:setVisible(false)
+                self.light_hero:setVisible(false)
+                self.light_icon:setVisible(false)
+                self.light_item:setVisible(true)
+            end
+        end
+        if eventType == ccui.TouchEventType.ended then
+            if name == "Button_My_Card_5" then
+                print("click end studioPage.Button_My_Card_5")
+                if self._stepID == 1 then
+                    self:doStep(2)
+                end
+            elseif name == "Button_hero" then
+                if not self.heroHome then
+                    local heroHomeStudio = HeroHomePanelTest.new()
+                    local page = heroHomeStudio:getPage()
+                    self.page:addChild(page)
+                    self.heroHome = chooseMode
+                    if self.m_ClipNode then
+                        self.m_ClipNode:removeFromParent()
+                        self.m_ClipNode = nil
+                    end
+                else
+                    self.heroHome:setVisible(true)
+                end
+            elseif name == "Button_icon" then
+                if not self.heroHome then
+                    viewMgr.show(viewMgr.def.HANDBOOK_UI)
+                else
+                    self.heroHome:setVisible(true)
+                end
+            elseif name == "Button_item" then
+                -- 点击了道具商店按钮
+                viewMgr.show(viewMgr.def.ITEMSTORE_UI)
+                if self.m_ClipNode then
+                    self.m_ClipNode:removeFromParent(true)
+                    self.m_ClipNode = nil
+                end
+                local finger = self.Button_item:getChildByName("finger_1")
+                if finger then
+                    finger:removeFromParent(true)
+                    finger = nil
+                end
+            elseif name == "Button_jigsaw" then
+                -- 点击了道具商店按钮
+                -- 如果有对话框的话，需要把对话框隐藏掉
+                if self.Button_jigsaw.dialog then
+                    self.Button_jigsaw.dialog:removeSelf()
+                    self.Button_jigsaw.dialog = nil
+                end
+                -- 根据第六关模式1有没有通关来判定是显示拼图页面，还是模式解锁页面
+                local lv6Star = GlobalData.getLvStar(6)
+                if lv6Star[1][1] == 0 and lv6Star[1][2] == 0 then
+                    viewMgr.show(viewMgr.def.JIGSAW_UI)
+                else
+                    viewMgr.show(viewMgr.def.OPENMODE_UI)
+                end
+                
+            end
+        end
+        if eventType == ccui.TouchEventType.canceled then
+            self.light_ach:setVisible(false)
+            self.light_hero:setVisible(false)
+            self.light_icon:setVisible(false)
+            self.light_item:setVisible(false)
+        end
+    end
+    self.studioPage.Button_My_Card_5:addTouchEventListener(callBack)
     print("ItemStoreUI:ctor 3")
+
+
+
 end
 
 function ItemStoreUI:onEnter()
-    
+    -- 提示玩家点击哪个按钮的图片
+    print("ItemStoreUI:onEnter()")
+    self._tipFrame = ccui.ImageView:create("fightImgs/62.png")
+    self._tipFrame:retain()
+    print("ItemStoreUI:onEnter() 1")
+    local btn = self.studioPage.Button_My_Card_5
+    local size = btn:getContentSize()
+    print("ItemStoreUI:onEnter() 2")
+    self._tipFrame:setPosition(cc.p(size.width/2,size.height/2))
+    btn:addChild(self._tipFrame,1)
+    self._tipFrame:setTouchEnabled(false)
+    self._tipFrame:setSwallowTouches(false)
+    print("ItemStoreUI:onEnter() 3")
+
+    -- print("ItemStoreUI:onEnter()")
+    -- local finger = EffectAniCache.getFingerInHall()
+    -- print("ItemStoreUI:onEnter("))
+    -- finger:setName("finger_1")
+    -- self.studioPage.bgBottom.Button_My_Card_5:addChild(finger)
+    -- finger:setPosition(cc.p(spriteSize.width/2,spriteSize.height/2))
+
+    self:doStep(1)
+end
+
+-- 1 提示自己的第五张牌, 然后放到
+function ItemStoreUI:doStep(stepID)
+    print("ItemStoreUI:doStep stepID = "..tostring(stepID))
+    self._stepID = stepID
+
+    if stepID == 2 then
+        -- 在B2位置显示提示按钮
+        local btn = self.studioPage.Button_B_2
+        local size = btn:getContentSize()
+        self._tipFrame:setPosition(cc.p(size.width/2,size.height/2))
+        self._tipFrame:removeFromParent()
+        btn:addChild(self._tipFrame,1)
+    end
+
 end
 
 -- 记录所有的控件

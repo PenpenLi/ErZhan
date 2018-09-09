@@ -3,8 +3,8 @@
        "isLandscape": false,
        "isWindowTop": false,
        "name": "towerdefence",
-       "width": 1280, //1024,
-       "height": 720, //768,
+       "width": 720, //1024,
+       "height": 1280, //768,
        "entry": "src/main.lua",
        "consolePort": 6010,
        "uploadPort": 6020

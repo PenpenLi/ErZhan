@@ -39,7 +39,7 @@ viewMgr.def = {
     Package_UI     = { path = "ui.PackageUI.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "packageui",showType = viewMgr.showType.POP},
     Touch_UI       = { path = "ui.TouchDisableUI.lua",zOrder = viewMgr.zOrder.HIGHEST,name = "touchui",showType = viewMgr.showType.POP},
     DailyAward     = { path = "ui.DailyAward.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "signui",showType = viewMgr.showType.POP},
-    ITEMSTORE_UI   = { path = "ui.ItemStoreUI.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "itemstore",showType = viewMgr.showType.POP},
+    ITEMSTORE_UI   = { path = "ui.ItemStoreUI.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "itemstore",showType = viewMgr.showType.DEFAULT},
     GETNEWHERO_UI  = { path = "ui.GetNewHeroUI.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "getnewhero",showType = viewMgr.showType.POP},
     JIGSAW_UI      = { path = "ui.JigsawStudioUI.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "jigsaw",showType = viewMgr.showType.POP},
     HERORESET_UI   = { path = "ui.HeroResetStudioUI.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "heroreset",showType = viewMgr.showType.POP},
@@ -76,8 +76,10 @@ function viewMgr.show(layer,...)
             scene:addChild(page,zorder)
             page:setPosition(cc.p(display.cx,display.cy))
             if layer.showType == viewMgr.showType.POP then
+                print("page:setScale(0.8)")
                 page:setScale(0.8)
             else
+                print("page:setScale(GLOBAL_HALL_UI_SCALE2) = "..tostring(GLOBAL_HALL_UI_SCALE2))
                 page:setScale(GLOBAL_HALL_UI_SCALE2)
             end
             if instance.onEnter then

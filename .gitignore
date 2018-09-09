@@ -1,3 +1,10 @@
 frameworks
-runtime
+runtime/android
+runtime/win32/obj
+runtime/win32/res
+runtime/win32/src2
 publish
+*.dll
+*.pdb
+*.exe
+*.ilk
