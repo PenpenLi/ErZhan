@@ -1,0 +1,46 @@
+https://developer.apple.com/membercenter/index.action
+
+https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action
+
+
+账户：1093261274@qq.com
+密码：HZljwl2013
+
+http://blog.csdn.net/zougangx/article/details/6074313
+https://itunesconnect.apple.com/WebObjects/iTunesConnect.woa
+新浪微博
+App Key：4066265867
+App Secret：b34e4d50b8dc4a51beec017e588f0957
+E179DC58-2B6B-4D5B-B827-061A1C91318F
+微信
+
+AppID 
+wx5bf129552a5a707f
+a41da282dd55e08276235fc3111637c7
+customer@liujin.cn
+hzljwl2014
+
+[NSThreadsleepForTimeInterval:2];
+
+NSString *str = [NSString stringWithFormat:
+                         @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa /wa/viewContentsUserReviews?type=Purple+Software&id=%d",
+                         myAppID ];  
+
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+
+http://www.liujin.cn/website/images/offical/flash.png
+腾讯微博
+App Key:801375857          
+App Secret:87b0e3055b6f0144824c2e9af40e72b5
+http://wap.liujin.cn
+如果你可以unload/load 名字叫 ‘discoveryd’ 的东西，问题就可以解决
+要用到Terminal （Application->Utilities->Terminal）
+粘贴
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.discoveryd.plist因为是sudo指令，系统会提示你输入管理员密码，密码不会显示出来，但是确定（按下Return键）后就进入。
+然后粘贴上面指令，确定。
+之后复制粘贴另外一条指令
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.discoveryd.plist
+确定后，Safari就可以正常使用了。
+目前只能每次遇到问题就执行上面的方法直到苹果升级解决问题。
+http://wap.liujin.cn
+ec8f1f877253d0a6a698303c5418f01bd0242a38

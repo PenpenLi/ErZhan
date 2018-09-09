@@ -1,0 +1,111 @@
+
+ui_hero_background_2.png
+size: 2762,1658
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0_00000
+  rotate: false
+  xy: 2, 1106
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00002
+  rotate: false
+  xy: 2, 554
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00004
+  rotate: false
+  xy: 554, 1106
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00006
+  rotate: false
+  xy: 2, 2
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00008
+  rotate: false
+  xy: 554, 554
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00010
+  rotate: false
+  xy: 1106, 1106
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00012
+  rotate: false
+  xy: 554, 2
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00014
+  rotate: false
+  xy: 1106, 554
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00016
+  rotate: false
+  xy: 1658, 1106
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00018
+  rotate: false
+  xy: 1106, 2
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00020
+  rotate: false
+  xy: 1658, 554
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00022
+  rotate: false
+  xy: 2210, 1106
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00024
+  rotate: false
+  xy: 1658, 2
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00026
+  rotate: false
+  xy: 2210, 554
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1
+0_00028
+  rotate: false
+  xy: 2210, 2
+  size: 550, 550
+  orig: 550, 550
+  offset: 0, 0
+  index: -1

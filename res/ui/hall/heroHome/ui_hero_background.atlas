@@ -1,0 +1,20 @@
+
+ui_hero_background.png
+size: 556,404
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1_00000
+  rotate: true
+  xy: 404, 52
+  size: 350, 150
+  orig: 350, 150
+  offset: 0, 0
+  index: -1
+2_00015
+  rotate: false
+  xy: 2, 2
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
