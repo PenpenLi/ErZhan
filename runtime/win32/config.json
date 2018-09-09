@@ -1,6 +1,6 @@
 {
     "init_cfg":{
-       "isLandscape": false,
+       "isLandscape": true,
        "isWindowTop": false,
        "name": "towerdefence",
        "width": 1280, //1024,
