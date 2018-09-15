@@ -1,0 +1,99 @@
+<Solution>
+  <PropertyGroup Name="CocosProject" Version="2.2.1.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="FightNode.csd" Type="Node" />
+        <Folder Name="fightImgs">
+          <Image Name="allBg.png" />
+          <Image Name="11.png" />
+          <Image Name="12.png" />
+          <Image Name="13.png" />
+          <Image Name="14.png" />
+          <Image Name="15.png" />
+          <Image Name="16.png" />
+          <Image Name="17.png" />
+          <Image Name="18.png" />
+          <Image Name="19.png" />
+          <Image Name="20.png" />
+          <Image Name="21.png" />
+          <Image Name="22.png" />
+          <Image Name="23.png" />
+          <Image Name="24.png" />
+          <Image Name="25.png" />
+          <Image Name="26.png" />
+          <Image Name="27.png" />
+          <Image Name="28.png" />
+          <Image Name="29.png" />
+          <Image Name="30.png" />
+          <Image Name="31.png" />
+          <Image Name="32.png" />
+          <Image Name="33.png" />
+          <Image Name="34.png" />
+          <Image Name="35.png" />
+          <Image Name="36.png" />
+          <Image Name="37.png" />
+          <Image Name="38.png" />
+          <Image Name="39.png" />
+          <Image Name="40.png" />
+          <Image Name="41.png" />
+          <Image Name="42.png" />
+          <Image Name="43.png" />
+          <Image Name="44.png" />
+          <Image Name="45.png" />
+          <Image Name="46.png" />
+          <Image Name="47.png" />
+          <Image Name="48.png" />
+          <Image Name="49.png" />
+          <Image Name="50.png" />
+          <Image Name="51.png" />
+          <Image Name="52.png" />
+          <Image Name="53.png" />
+          <Image Name="54.png" />
+          <Image Name="55.png" />
+          <Image Name="56.png" />
+          <Image Name="57.png" />
+          <Image Name="58.png" />
+          <Image Name="59.png" />
+          <Image Name="60.png" />
+          <Image Name="61.png" />
+          <Image Name="62.png" />
+          <Image Name="63.png" />
+          <Image Name="64.png" />
+          <Image Name="65.png" />
+          <Image Name="66.png" />
+          <Image Name="67.png" />
+          <Image Name="68.png" />
+          <Image Name="69.png" />
+          <Image Name="70.png" />
+          <Image Name="71.png" />
+          <Image Name="72.png" />
+          <Image Name="73.png" />
+          <Image Name="74.png" />
+          <Image Name="75.png" />
+          <Image Name="76.png" />
+          <Image Name="77.png" />
+          <Image Name="78.png" />
+          <Image Name="79.png" />
+          <Image Name="80.png" />
+          <Image Name="81.png" />
+          <Image Name="82.png" />
+          <Image Name="83.png" />
+          <Image Name="84.png" />
+          <Image Name="85.png" />
+          <Image Name="86.png" />
+          <Image Name="87.png" />
+          <Image Name="88.png" />
+          <Image Name="89.png" />
+          <Image Name="90.png" />
+          <Image Name="91.png" />
+          <Image Name="92.png" />
+          <Image Name="93.png" />
+          <Image Name="94.png" />
+          <Image Name="95.png" />
+          <Image Name="touming.png" />
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
