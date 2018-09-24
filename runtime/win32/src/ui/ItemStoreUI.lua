@@ -21,6 +21,9 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
     -- 需要默认选中第几个道具
     self.itemIndex = itemIndex
 
+    -- 记录在场的卡牌
+    self._cardsNode = {}
+
     local clickBack = function(luaFileName,node,callbackName)  
         print("callbackName = "..tostring(callbackName))
         if callbackName == "clickEvent" then
@@ -75,8 +78,6 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
     -- -- 获得Studio中的所有控件
     self:getAllElemets()
 
-    -- NotifyCenter.register(EventNames.REFRUSH_WORLDHALL, handler(self, self.updateData), itemStoreStudio)
-
     -- 做适配动画
     -- local panel = self.studioPage["bgBottom"]
     -- utils.playAction(self.studioNode, panel)
@@ -110,52 +111,50 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                 if self._stepID == 1 then
                     self:doStep(2)
                 end
-            elseif name == "Button_hero" then
-                if not self.heroHome then
-                    local heroHomeStudio = HeroHomePanelTest.new()
-                    local page = heroHomeStudio:getPage()
-                    self.page:addChild(page)
-                    self.heroHome = chooseMode
-                    if self.m_ClipNode then
-                        self.m_ClipNode:removeFromParent()
-                        self.m_ClipNode = nil
-                    end
-                else
-                    self.heroHome:setVisible(true)
+            elseif name == "Button_B_2" then
+                if self._stepID == 2 then
+                    self:doStep(3)
                 end
-            elseif name == "Button_icon" then
-                if not self.heroHome then
-                    viewMgr.show(viewMgr.def.HANDBOOK_UI)
-                else
-                    self.heroHome:setVisible(true)
+            elseif name =="Button_My_Card_4" then
+                if self._stepID == 3 then
+                    self:doStep(4)
                 end
-            elseif name == "Button_item" then
-                -- 点击了道具商店按钮
-                viewMgr.show(viewMgr.def.ITEMSTORE_UI)
-                if self.m_ClipNode then
-                    self.m_ClipNode:removeFromParent(true)
-                    self.m_ClipNode = nil
+            elseif name =="Button_B_3" then
+                if self._stepID == 4 then
+                    self:doStep(5)
                 end
-                local finger = self.Button_item:getChildByName("finger_1")
-                if finger then
-                    finger:removeFromParent(true)
-                    finger = nil
+            elseif name =="Button_My_Card_3" then
+                if self._stepID == 5 then
+                    self:doStep(6)
                 end
-            elseif name == "Button_jigsaw" then
-                -- 点击了道具商店按钮
-                -- 如果有对话框的话，需要把对话框隐藏掉
-                if self.Button_jigsaw.dialog then
-                    self.Button_jigsaw.dialog:removeSelf()
-                    self.Button_jigsaw.dialog = nil
+            elseif name =="Button_B_4" then
+                if self._stepID == 6 then
+                    self:doStep(7)
                 end
-                -- 根据第六关模式1有没有通关来判定是显示拼图页面，还是模式解锁页面
-                local lv6Star = GlobalData.getLvStar(6)
-                if lv6Star[1][1] == 0 and lv6Star[1][2] == 0 then
-                    viewMgr.show(viewMgr.def.JIGSAW_UI)
-                else
-                    viewMgr.show(viewMgr.def.OPENMODE_UI)
+            elseif name =="Button_My_Card_2" then
+                if self._stepID == 7 then
+                    self:doStep(8)
                 end
-                
+            elseif name =="Button_A_4" then
+                if self._stepID == 8 then
+                    self:doStep(9)
+                end
+            elseif name =="Button_My_Card_1" then
+                if self._stepID == 9 then
+                    self:doStep(10)
+                end
+            elseif name =="Button_B_5" then
+                if self._stepID == 10 then
+                    self:doStep(11)
+                end
+            elseif name =="Button_My_Card_1" then
+                if self._stepID == 11 then
+                    self:doStep(12)
+                end
+            elseif name =="Button_A_3" then
+                if self._stepID == 12 then
+                    self:doStep(13)
+                end
             end
         end
         if eventType == ccui.TouchEventType.canceled then
@@ -202,152 +201,131 @@ function ItemStoreUI:doStep(stepID)
     print("ItemStoreUI:doStep stepID = "..tostring(stepID))
     self._stepID = stepID
 
-    if stepID == 2 then
+    if stepID == 1 then
+        -- 在第五张手牌位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_My_Card_5)
+    elseif stepID == 2 then
+        -- TO-DO第五张手牌显示选中状态
         -- 在B2位置显示提示按钮
-        local btn = self.studioPage.Button_B_2
-        local size = btn:getContentSize()
-        self._tipFrame:setPosition(cc.p(size.width/2,size.height/2))
-        self._tipFrame:removeFromParent()
-        btn:addChild(self._tipFrame,1)
+        self:showGuideTip(self.studioPage.Button_B_2)
+    elseif stepID == 3 then
+        -- TO-DO 在B2位置显示卡牌 29军大刀队
+        -- 在第四张手牌位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_My_Card_4)
+        self:showDBY_inHand(self.studioPage.Button_My_Card_5)
+    elseif stepID == 4 then
+        -- TO-DO第四张手牌显示选中状态
+        -- 在B3位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_B_3)
+    elseif stepID == 5 then
+        -- TO-DO 在B3位置显示卡牌 远征军
+        -- 在第三张手牌位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_My_Card_3)
+        self:showDBY_inHand(self.studioPage.Button_My_Card_4)
+    elseif stepID == 6 then
+        -- TO-DO第三张手牌显示选中状态
+        -- 在B4位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_B_4)
+    elseif stepID == 7 then
+        -- TO-DO 在B4位置显示卡牌 地雷
+        -- 在第二张手牌位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_My_Card_2)
+        self:showDBY_inHand(self.studioPage.Button_My_Card_3)
+    elseif stepID == 8 then
+        -- TO-DO第二张手牌显示选中状态
+        -- 在A4位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_A_4)
+    elseif stepID == 9 then
+        -- TO-DO 在A4位置显示卡牌 S105mm炮
+        -- 在第一张手牌位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_My_Card_1)
+        self:showDBY_inHand(self.studioPage.Button_My_Card_2)
+    elseif stepID == 10 then
+        -- TO-DO第一张手牌显示选中状态
+        -- 在B5位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_B_5)
+    elseif stepID == 11 then
+        -- TO-DO 在B5位置显示卡牌 侦察排
+        -- 在第一张手牌位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_My_Card_1)
+        self:showDBY_inHand(self.studioPage.Button_My_Card_1)
+    elseif stepID == 12 then
+        -- TO-DO第一张手牌显示选中状态
+        -- 在A3位置显示提示按钮
+        self:showGuideTip(self.studioPage.Button_A_3)
+    elseif stepID == 13 then
+        -- TO-DO 在A3位置显示卡牌 大本营
+        -- 摆拍结束显示地方放的所有的牌
+        self:showEnemyCards()
     end
 
+end
+
+function ItemStoreUI:showGuideTip(fatherNode)
+    local size = fatherNode:getContentSize()
+    self._tipFrame:removeFromParent()
+    fatherNode:addChild(self._tipFrame,1)
+    self._tipFrame:setPosition(cc.p(size.width/2,size.height/2))
+end
+
+function ItemStoreUI:showDBY_inHand(fatherNode)
+    -- 在手牌的这个位置显示大本营
+end
+
+-- 修改卡牌的纹理
+function ItemStoreUI:changeCardTex(cardNod, cardID, texPath)
+    if cardID and not texPath then
+        texPaht = ""..cardID..".png"
+    end
+    cardNod:loadTextureNormal(texPath,0)
+    cardNod:loadTexturePressed(texPath,0)
+    cardNod:loadTextureDisabled(texPath,0)
+end
+
+-- 摆拍结束显示地方放的所有的牌
+function ItemStoreUI:showEnemyCards()
+    local function timer()
+        -- 特攻队D1, 狙击小队D2, 95式坦克D3, 105mm炮D4, 13师团D5, 大本营E4
+        self:addCardToTable(cardID, "C_4")
+        -- 显示完地方卡牌之后, 敌方开始移动
+        self:moveEnemyCard(2, "D5", "C4")
+    end
+    -- 延迟3s显示对方手牌
+    scheduler:scheduleScriptFunc(timer,3, false)
+end
+
+-- 放一张手牌到牌桌上面
+function ItemStoreUI:addCardToTable(cardID, posID)
+    local card = ccui.ImageView:create("ui/sign/get.png")
+    self.studioPage["Button_"..posID]:addChild(card)
+    self._cardsNode[cardID] = card
+end
+
+-- 延迟几秒把敌方的卡片移动到目标位置
+function ItemStoreUI:moveEnemyCard(delayTime, cardNode, posTo, callFunc)
+    local function timer()
+        -- 显示完地方卡牌之后, 敌方开始移动
+        self:moveEnemyCard(2, "D5", "C4")
+    end
+    -- 延迟3s显示对方手牌
+    scheduler:scheduleScriptFunc(timer,3, false)
+
+    local act1 = cc.DelayTime:create(delayTime)
+    local function finc1( ... )
+        if callFunc then
+            callFunc()
+        end
+    end
+    local act2 = cc.CallFunc:create(finc1)
+    local moveAction = cc.MoveTo:create(0.5, posTo)
+    local seq  = cc.Sequence:create( act1, moveAction, act2)
+    self.root:runAction(seq)
 end
 
 -- 记录所有的控件
 function ItemStoreUI:getAllElemets()
-    -- -- 关闭按钮
-    -- local closeBtn  = self.studioPage["closeBtn"]
-    -- closeBtn:addClickEventListener(function (params )
-    --     if self.finc then
-    --         self.finc()
-    --     end
-
-    --     -- 显示了第三关完成了点击道具商店的指引之后，就需要把新通关的关卡由 3 置为0
-    --     if GlobalData.getNewThroughLv() == 3 then
-    --         GlobalData.setNewThroughLv(0)
-    --         -- 友盟统计，新手引导第四步已经结束了
-    --         umengSdk.setLevelStart(umengSdk.newGuide.guide04,1)
-    --         umengSdk.setLevelStart(umengSdk.newGuide.guide04,2)
-    --     end
-
-    --     AudioMgr.playSound(AudioMgr.allUIEffect.Menu,false)
-    --     viewMgr.hide(viewMgr.def.ITEMSTORE_UI)
-    -- end)
-
-    -- -- 获得钻石按钮
-    -- local diamondBtn = self.studioPage["diamondBtn"]
-    -- diamondBtn:addClickEventListener(function (params )
-    --     AudioMgr.playSound(AudioMgr.allUIEffect.Menu,false)
-    --     viewMgr.show(viewMgr.def.STORE_UI)
-    -- end)
-
 
 end
-
--- 生成3个道具技能的描述
-function ItemStoreUI:dealSkillExplan()
-
-    self.richTexts = {}
-    for i = 1, 3 do
-        local skillConfig = RMBSkillProperties.get("710"..tostring(i).."01")
-
-        self.itemSkillName:setString(skillConfig.name)
-
-        self.richTexts[i] = ccui.RichText:create()
-        -- self.richTexts[i]:setOutLine(cc.c4b(0,0,0,255),2)
-        self.richTexts[i]:setContentSize(cc.size(220,90))
-        self.richTexts[i]:ignoreContentAdaptWithSize(false)
-        self.richTexts[i]:setPosition(cc.p(0, 20))
-        self.itemExplanLab:addChild(self.richTexts[i])
-
-        local text = string.split(skillConfig.skillText,"$")
-        local re1 = nil
-        for j = 1,#text do
-            if j % 2 == 0 or text[j] == "-" then
-                -- 绿色
-                -- re1 = ccui.RichElementText:create(j, cc.c3b(188, 231, 53), 255,text[j],GLOBAL_FONTNAME,24)
-                -- 红色
-                re1 = ccui.RichElementText:create(j, cc.c3b(156, 0, 0), 255,text[j],GLOBAL_FONTNAME,24)
-            else
-                -- 咖啡色
-                re1 = ccui.RichElementText:create(j, cc.c3b(72, 49, 30), 255,text[j],GLOBAL_FONTNAME,24)
-            end
-            self.richTexts[i]:pushBackElement(re1)
-        end
-    end
-end
-function ItemStoreUI:updateData()
-    self.itemCountLabs[1]:setString(GlobalData.getSkillItemsCount(1))
-    self.itemCountLabs[2]:setString(GlobalData.getSkillItemsCount(2))
-    self.itemCountLabs[3]:setString(GlobalData.getSkillItemsCount(3))
-
-    -- 更新当前的钻石数量
-    self.allHasDiamondLab:setString(GlobalData.getDiamondCount())
-end
-
--- 点击道具按钮
-function ItemStoreUI:onClickItemBtn(itemIndex)
-    print("ItemStoreUI:onClickItemBtn itemIndex = "..tostring(itemIndex))
-    local skillConfig = RMBSkillProperties.get("710"..tostring(itemIndex).."01")
-
-    self.itemSkillName:setString(skillConfig.name)
-
-    -- 更新右边显示的item道具的icon
-    self.right_itemIcon:loadTexture("ui/Icons/rmbSkillIcon/710"..tostring(itemIndex).."01.png")
-
-    self.itemExplanLab:setString("")
-    -- 显示对应的道具技能描述
-    for i = 1, 3 do
-        if i == itemIndex then
-            self.richTexts[i]:setVisible(true)
-            self.itemBtns[i]:loadTextureNormal("ui/Icons/rmbSkillIcon/"
-                .."710"..tostring(i).."01_off.png", 0)
-        else
-            self.richTexts[i]:setVisible(false)
-            self.itemBtns[i]:loadTextureNormal("ui/Icons/rmbSkillIcon/"
-                .."710"..tostring(i).."01.png", 0)
-        end
-    end
-
-    -- 购买这个道具需要多少钻石
-    self.needDiamondCount = skillConfig.powerCost[2]
-    -- 当前选中的是第几个道具
-    self.curItemIndex = itemIndex
-end
-
--- 点击购买按钮
-function ItemStoreUI:onClickBuy()
-    print("ItemStoreUI:onClickItemBtn")
-
-    if self.needDiamondCount > GlobalData.getDiamondCount() then
-        -- 钻石不够，显示购买钻石页面
-        viewMgr.show(viewMgr.def.STORE_UI,func)
-    else
-        GlobalData.addDiamondCount(0 - self.needDiamondCount)
-        GlobalData.changeSkillItemsCount(self.curItemIndex, 1)
-
-        -- 买了这个item，左侧的icon需要缩放一下
-        if not self.isIconInActions[self.curItemIndex] then
-            self.isIconInActions[self.curItemIndex] = true
-            local scale = self.itemIcons[self.curItemIndex]:getScale()
-            local scaleto1 = cc.ScaleTo:create(0.2, 1.2*scale) -- 0.5, 1.5)
-            local scaleto2 = cc.ScaleTo:create(0.2, 1.0*scale) -- 0.5,1.3)
-            local function finc( ... )
-                self.isIconInActions[self.curItemIndex] = false
-            end
-            local act3 = cc.CallFunc:create(finc)
-            local squence = cc.Sequence:create(scaleto1,scaleto2,act3)
-            self.itemIcons[self.curItemIndex]:runAction(squence)
-        end
-
-        -- 发信号出去刷新页面
-        NotifyCenter.notify(EventNames.REFRUSH_WORLDHALL,nil)
-
-        -- 飘一个往上的tips
-        utils.createAniFont(WordLanguage.SucceeBuyItem,self.studioNode)
-    end
-end
-
 
 -- 获得node页面
 function ItemStoreUI:getPage()

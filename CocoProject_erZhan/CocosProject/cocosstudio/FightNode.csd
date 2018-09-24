@@ -42,12 +42,12 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="fightImgs/allBg.png" />
           </NodeObjectData>
-          <NodeObjectData Name="topContainer" ActionTag="1139015296" Visible="False" FrameEvent="" Tag="14" LeftMargin="-373.5115" RightMargin="-376.4885" TopMargin="-666.9995" BottomMargin="566.9995" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
-            <Position X="-373.5115" Y="566.9995" />
+          <NodeObjectData Name="topContainer" ActionTag="1139015296" Visible="False" FrameEvent="" Tag="14" LeftMargin="-375.0000" RightMargin="-375.0000" TopMargin="-667.5000" BottomMargin="-667.5000" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+            <Position X="0.0000" Y="0.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <AnchorPoint />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <Size X="750.0000" Y="100.0000" />
+            <Size X="750.0000" Y="1335.0000" />
             <PrePosition X="0.0000" Y="0.0000" />
             <PreSize X="0.0000" Y="0.0000" />
             <Children>
