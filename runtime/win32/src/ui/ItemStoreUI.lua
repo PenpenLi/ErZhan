@@ -114,6 +114,9 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             elseif name == "Button_B_2" then
                 if self._stepID == 2 then
                     self:doStep(3)
+                elseif self._stepID == 17 then
+                    -- B2大刀队移动至C2
+                    self:doStep(18)
                 end
             elseif name =="Button_My_Card_4" then
                 if self._stepID == 3 then
@@ -146,6 +149,9 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             elseif name =="Button_B_5" then
                 if self._stepID == 10 then
                     self:doStep(11)
+                elseif self._stepID == 14 then
+                    -- 引导玩家点击B5侦察排, 侦察C4位置的单位（暴露13师团），然后移动至C5
+                    self:doStep(15)
                 end
             elseif name =="Button_My_Card_1" then
                 if self._stepID == 11 then
@@ -155,6 +161,39 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                 if self._stepID == 12 then
                     self:doStep(13)
                 end
+            elseif name == "Button_C_4" then
+                -- 引导玩家侦察C4位置的单位（暴露13师团），然后移动至C5
+                self:doStep(16)
+            elseif name == "Button_C_5" then
+                -- 引导玩家点击B5侦察排 然后移动至C5
+                if self._stepID == 16 then
+                    local function callFunc( ... )
+                        -- B2大刀队移动至C2
+                        self:doStep(17)
+                    end
+                    self:moveTableCard(2, "KP1001", "B_5", "C_5", callFunc)
+                end
+            elseif name == "Button_C_2" then
+                -- 引导玩家点击B5侦察排 然后移动至C5
+                if self._stepID == 18 then
+                    local function callFunc( ... )
+                        -- C3位置部署机枪阵地
+                        self:doStep(19)
+                    end
+                    self:moveTableCard(2, "KP1002", "B_2", "C_2", callFunc)
+                end
+
+            elseif name == "Button_C_3" then
+                -- C3位置部署机枪阵地
+                self:addCardToTable("KP1009", "C_3", 1)
+                if self._stepID == 19 then
+                    local function callFunc( ... )
+                        -- C3位置部署机枪阵地
+                        self:showTurnTip(true)
+                    end
+                end
+                scheduler:scheduleScriptFunc(timer,3, false)
+                
             end
         end
         if eventType == ccui.TouchEventType.canceled then
@@ -193,6 +232,13 @@ function ItemStoreUI:onEnter()
     -- self.studioPage.bgBottom.Button_My_Card_5:addChild(finger)
     -- finger:setPosition(cc.p(spriteSize.width/2,spriteSize.height/2))
 
+    -- 自己有多少手牌
+    self.myHandCount = 5
+    -- 敌方有多少手牌
+    self.enemyHandCount = 5
+    -- 所有在牌桌上面的牌
+    self.allCardsInTable = {}
+
     self:doStep(1)
 end
 
@@ -210,6 +256,8 @@ function ItemStoreUI:doStep(stepID)
         self:showGuideTip(self.studioPage.Button_B_2)
     elseif stepID == 3 then
         -- TO-DO 在B2位置显示卡牌 29军大刀队
+        self:addCardToTable("KP1002", "B_2", 5)
+        self:addCardToHand("KP1000")
         -- 在第四张手牌位置显示提示按钮
         self:showGuideTip(self.studioPage.Button_My_Card_4)
         self:showDBY_inHand(self.studioPage.Button_My_Card_5)
@@ -219,6 +267,7 @@ function ItemStoreUI:doStep(stepID)
         self:showGuideTip(self.studioPage.Button_B_3)
     elseif stepID == 5 then
         -- TO-DO 在B3位置显示卡牌 远征军
+        self:addCardToTable("KP1003", "B_3", 4)
         -- 在第三张手牌位置显示提示按钮
         self:showGuideTip(self.studioPage.Button_My_Card_3)
         self:showDBY_inHand(self.studioPage.Button_My_Card_4)
@@ -228,6 +277,7 @@ function ItemStoreUI:doStep(stepID)
         self:showGuideTip(self.studioPage.Button_B_4)
     elseif stepID == 7 then
         -- TO-DO 在B4位置显示卡牌 地雷
+        self:addCardToTable("KP1010", "B_4", 3)
         -- 在第二张手牌位置显示提示按钮
         self:showGuideTip(self.studioPage.Button_My_Card_2)
         self:showDBY_inHand(self.studioPage.Button_My_Card_3)
@@ -237,6 +287,7 @@ function ItemStoreUI:doStep(stepID)
         self:showGuideTip(self.studioPage.Button_A_4)
     elseif stepID == 9 then
         -- TO-DO 在A4位置显示卡牌 S105mm炮
+        self:addCardToTable("KP1005", "A_4", 2)
         -- 在第一张手牌位置显示提示按钮
         self:showGuideTip(self.studioPage.Button_My_Card_1)
         self:showDBY_inHand(self.studioPage.Button_My_Card_2)
@@ -246,6 +297,7 @@ function ItemStoreUI:doStep(stepID)
         self:showGuideTip(self.studioPage.Button_B_5)
     elseif stepID == 11 then
         -- TO-DO 在B5位置显示卡牌 侦察排
+        self:addCardToTable("KP1001", "B_5", 1)
         -- 在第一张手牌位置显示提示按钮
         self:showGuideTip(self.studioPage.Button_My_Card_1)
         self:showDBY_inHand(self.studioPage.Button_My_Card_1)
@@ -255,8 +307,28 @@ function ItemStoreUI:doStep(stepID)
         self:showGuideTip(self.studioPage.Button_A_3)
     elseif stepID == 13 then
         -- TO-DO 在A3位置显示卡牌 大本营
+        self:addCardToTable("KP1000", "A_5", 1)
         -- 摆拍结束显示地方放的所有的牌
         self:showEnemyCards()
+    elseif stepID == 14 then
+        -- 引导玩家点击B5侦察排, 侦察C4位置的单位（暴露13师团），然后移动至C5
+        self:showGuideTip(self.studioPage.Button_B_5)
+    elseif stepID == 15 then
+        -- 引导玩家侦察C4位置的单位（暴露13师团），然后移动至C5
+        self:showGuideTip(self.studioPage.Button_C_4)
+    elseif stepID == 16 then
+        -- 暴露C4位置的13师团，然后移动至C5
+        self:changeCardTex(self.allCardsInTable.KP2003, "KP2003")
+        self:showGuideTip(self.studioPage.Button_C_5)
+    elseif stepID == 17 then
+        -- B2大刀队移动至C2
+        self:showGuideTip(self.studioPage.Button_B_2)
+    elseif stepID == 18 then
+        -- B2大刀队移动至C2
+        self:showGuideTip(self.studioPage.Button_C_2)
+    elseif stepID == 19 then
+        -- C3位置部署机枪阵地
+        self:showGuideTip(self.studioPage.Button_C_3)
     end
 
 end
@@ -275,7 +347,7 @@ end
 -- 修改卡牌的纹理
 function ItemStoreUI:changeCardTex(cardNod, cardID, texPath)
     if cardID and not texPath then
-        texPaht = ""..cardID..".png"
+        texPath = "fightImgs/tableCards/"..cardID..".png"
     end
     cardNod:loadTextureNormal(texPath,0)
     cardNod:loadTexturePressed(texPath,0)
@@ -286,29 +358,107 @@ end
 function ItemStoreUI:showEnemyCards()
     local function timer()
         -- 特攻队D1, 狙击小队D2, 95式坦克D3, 105mm炮D4, 13师团D5, 大本营E4
-        self:addCardToTable(cardID, "C_4")
-        -- 显示完地方卡牌之后, 敌方开始移动
-        self:moveEnemyCard(2, "D5", "C4")
+        self:addCardToTable("KP2002", "D_1")
+        self:addCardToTable("KP2006", "D_2")
+        self:addCardToTable("KP2005", "D_3")
+        self:addCardToTable("KP2004", "D_4")
+        self:addCardToTable("KP2003", "D_5")
+        self:addCardToTable("KP2000", "E_4")
+
+        self:showTurnTip(true)
     end
     -- 延迟3s显示对方手牌
     scheduler:scheduleScriptFunc(timer,3, false)
 end
 
 -- 放一张手牌到牌桌上面
-function ItemStoreUI:addCardToTable(cardID, posID)
-    local card = ccui.ImageView:create("ui/sign/get.png")
+-- handIndex 表示是第几张手牌
+-- isEnemy true 表示是敌方放牌到牌桌上
+function ItemStoreUI:addCardToTable(cardID, posID, handIndex, isEnemy)
+    local card = ccui.ImageView:create("fightImgs/tableCards/"..cardID..".png")
+    self.allCardsInTable.cardID = card
+    card:setTouchEnabled(false)
     self.studioPage["Button_"..posID]:addChild(card)
     self._cardsNode[cardID] = card
+
+
+    -- 移除手牌
+    if not isEnemy then
+        self.studioPage["Button_My_Card_"..self.myHandCount]:setVisible(false)
+        self.myHandCount = self.myHandCount - 1
+    else
+        self.studioPage["enemy_Hand_Card_"..self.enemyHandCount]:setVisible(false)
+        self.enemyHandCount = self.enemyHandCount - 1
+    end
+
+    -- 第一回合日军行动结束后, 国军开始行动
+    if cardID == "KP2001" then
+        self:showTurnTip()
+    end
+end
+
+-- 显示自己回合/敌方回合
+function ItemStoreUI:showTurnTip(isEnemy)
+    if not self.turnCount then
+        self.turnCount = 0
+    end
+    if isEnemy then
+        self.turnCount = self.turnCount + 1
+        self.studioPage["Img_Turn_Img"]:loadTexture("")
+        self:enemyTurn()
+    else
+        self.studioPage["Img_Turn_Img"]:loadTexture("")
+        self:myTurn()
+    end
+
+    
+end
+
+-- 轮到敌方操作
+function ItemStoreUI:enemyTurn( ... )
+    if self.turnCount == 1 then
+        -- 敌方抓一张手牌 侦察小队
+        local function timer()
+            self:addCardToHand("KP2001", true)
+        end
+        -- 延迟3s显示对方手牌
+        scheduler:scheduleScriptFunc(timer,1, false)
+ 
+        local function finc1( ... )
+            -- 侦察小队部署于D5
+            self:addCardToTable("KP2001", "D_5", 1, true)
+        end
+        -- D5位置13师团移动至C4位, 回调函数里面部署D5
+        self:moveTableCard(2.5, "KP2003", "D_5", "C_4", finc1)
+    end
+end
+
+-- 轮到自己操作
+function ItemStoreUI:myTurn( ... )
+    if self.turnCount == 1 then
+        -- 引导玩家点击B5侦察排, 侦察C4位置的单位（暴露13师团），然后移动至C5
+        self:doStep(14)
+    end
+end
+
+function ItemStoreUI:addCardToHand(cardID, isEnemy)
+    if not isEnemy then
+        self.myHandCount = self.myHandCount + 1
+        self.studioPage["Button_My_Card_"..self.myHandCount]:setVisible(true)
+        self:changeCardTex(self.studioPage["Button_My_Card_"..self.myHandCount], cardID)
+
+    else
+        self.enemyHandCount = self.enemyHandCount + 1
+    end
+
 end
 
 -- 延迟几秒把敌方的卡片移动到目标位置
-function ItemStoreUI:moveEnemyCard(delayTime, cardNode, posTo, callFunc)
-    local function timer()
-        -- 显示完地方卡牌之后, 敌方开始移动
-        self:moveEnemyCard(2, "D5", "C4")
+function ItemStoreUI:moveTableCard(delayTime, cardID, nowPos, toPos, callFunc)
+    local cardNode = self.allCardsInTable.cardID
+    if not self._enemyMoveIndex then
+        self._enemyMoveIndex = 1
     end
-    -- 延迟3s显示对方手牌
-    scheduler:scheduleScriptFunc(timer,3, false)
 
     local act1 = cc.DelayTime:create(delayTime)
     local function finc1( ... )
@@ -317,9 +467,11 @@ function ItemStoreUI:moveEnemyCard(delayTime, cardNode, posTo, callFunc)
         end
     end
     local act2 = cc.CallFunc:create(finc1)
-    local moveAction = cc.MoveTo:create(0.5, posTo)
+    local x,y = self.studioPage["Button_"..toPos]:getPosition()
+    local moveAction = cc.MoveTo:create(0.5, cc.p(x, y))
     local seq  = cc.Sequence:create( act1, moveAction, act2)
-    self.root:runAction(seq)
+    cardNode:runAction(seq)
+    self._enemyMoveIndex = self._enemyMoveIndex + 1
 end
 
 -- 记录所有的控件
