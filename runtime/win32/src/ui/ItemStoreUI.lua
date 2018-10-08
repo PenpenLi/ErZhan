@@ -6,7 +6,7 @@ local EffectAniCache         = require("app.map.spine.EffectAniCache")
 
 local ItemStoreUI = class("ItemStoreUI")
 
-local scheduler = cc.Director:getInstance():getScheduler()
+local scheduler = require("framework.scheduler")
 local size = cc.size(240,280)
 local orderHeros = GlobalData.getHeroOrder()
 
@@ -106,6 +106,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             end
         end
         if eventType == ccui.TouchEventType.ended then
+            print("click end name = "..tostring(name).." self._stepID = "..tostring(self._stepID))
             if name == "Button_My_Card_5" then
                 print("click end studioPage.Button_My_Card_5")
                 if self._stepID == 1 then
@@ -117,6 +118,14 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                 elseif self._stepID == 17 then
                     -- B2大刀队移动至C2
                     self:doStep(18)
+                elseif self._stepID == 29 then
+                    -- 我方第三回合, 引导点击B2, 狙击队部署于B2
+                    self:addCardToTable("KP1007", "B_2", 1)
+                    local function finc_My_3_3( ... )
+                        -- 轮到敌方第三回合
+                        self:showTurnTip(true)
+                    end
+                    scheduler.performWithDelayGlobal(finc_My_3_3, 1.5, false)
                 end
             elseif name =="Button_My_Card_4" then
                 if self._stepID == 3 then
@@ -141,10 +150,33 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             elseif name =="Button_A_4" then
                 if self._stepID == 8 then
                     self:doStep(9)
+                elseif self._stepID == 21 then
+                    -- 我方第二回合, 玩家点击了A4位105mm炮后, 引导远程攻击C4位13师团（-5剩4血）。
+                    self:doStep(22)
+                elseif self._stepID == 24 then
+                    -- 我方第三回合, 引导玩家点击A4位105炮远程攻击C3位95式坦克，并将其击毁。
+                    self:doStep(25)
                 end
             elseif name =="Button_My_Card_1" then
                 if self._stepID == 9 then
                     self:doStep(10)
+                elseif self._stepID == 11 then
+                    self:doStep(12)
+                elseif self._stepID == 19 then
+                    -- 我方第一回合
+                    -- C3位置部署机枪阵地
+                    self:doStep(20)
+                elseif self._stepID == 23 then
+                    -- 我方第二回合, 部署工兵连于B5
+                    self:addCardToTable("KP1006", "B_5", 1)
+                    local function timer( ... )
+                        -- 轮到敌方第三回合
+                        self:showTurnTip(true)
+                    end
+                    scheduler.performWithDelayGlobal(timer,3, false)
+                elseif self._stepID == 28 then
+                    -- 我方第三回合, 引导点击B2, 狙击队部署于B2
+                    self:doStep(29)
                 end
             elseif name =="Button_B_5" then
                 if self._stepID == 10 then
@@ -152,18 +184,34 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                 elseif self._stepID == 14 then
                     -- 引导玩家点击B5侦察排, 侦察C4位置的单位（暴露13师团），然后移动至C5
                     self:doStep(15)
-                end
-            elseif name =="Button_My_Card_1" then
-                if self._stepID == 11 then
-                    self:doStep(12)
+                elseif self._stepID == 26 then
+                    -- 我方第三回合, 引导点击C4位
+                    self:doStep(27)
                 end
             elseif name =="Button_A_3" then
                 if self._stepID == 12 then
                     self:doStep(13)
                 end
             elseif name == "Button_C_4" then
-                -- 引导玩家侦察C4位置的单位（暴露13师团），然后移动至C5
-                self:doStep(16)
+                if stepID == 15 then 
+                    -- 引导玩家侦察C4位置的单位（暴露13师团），然后移动至C5
+                    self:doStep(16)
+                elseif stepID == 22 then
+                    -- 我方第二回合, A4 105mm炮远程攻击C4位13师团（-5剩4血）。
+                    local function finc_My_2_1( ... )
+                        -- 部署工兵连于B5
+                        self:doStep(23)
+                    end
+                    self:attackattack(0.5, "KP1005", "KP2003", "A_4", "C_4", finc_My_2_1, 4, nil, false)
+                elseif stepID == 27 then
+                    -- 我放第三回合, B5工兵连移动至C4位
+                    local function finc_My_3_2( ... )
+                        -- 我方第三回合, 引导点击第一张手牌, 狙击队部署于B2
+                        self:doStep(28)
+                    end
+                    self:moveTableCard(0.5, "KP1006", "B_5", "C_4", finc_My_3_2)
+                end
+
             elseif name == "Button_C_5" then
                 -- 引导玩家点击B5侦察排 然后移动至C5
                 if self._stepID == 16 then
@@ -171,28 +219,35 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                         -- B2大刀队移动至C2
                         self:doStep(17)
                     end
-                    self:moveTableCard(2, "KP1001", "B_5", "C_5", callFunc)
+                    self:moveTableCard(0.5, "KP1001", "B_5", "C_5", callFunc)
                 end
             elseif name == "Button_C_2" then
                 -- 引导玩家点击B5侦察排 然后移动至C5
                 if self._stepID == 18 then
                     local function callFunc( ... )
-                        -- C3位置部署机枪阵地
                         self:doStep(19)
                     end
-                    self:moveTableCard(2, "KP1002", "B_2", "C_2", callFunc)
+                    self:moveTableCard(0.5, "KP1002", "B_2", "C_2", callFunc)
                 end
 
             elseif name == "Button_C_3" then
                 -- C3位置部署机枪阵地
-                self:addCardToTable("KP1009", "C_3", 1)
-                if self._stepID == 19 then
-                    local function callFunc( ... )
-                        -- C3位置部署机枪阵地
+                if self._stepID == 20 then
+                    self:addCardToTable("KP1009", "C_3", 1)
+                    local function timer( ... )
+                        -- 轮到敌方第二回合
                         self:showTurnTip(true)
                     end
+                    scheduler.performWithDelayGlobal(timer,3, false)
+                elseif self._stepID == 25 then
+                    -- 我方第三回合, 引导玩家A4 105mm炮攻击C3位95式坦克，并将其击毁。
+                    local function finc_My_3_1( ... )
+                        -- 引导点击B5工兵连移动至C4位
+                        self:doStep(26)
+                    end
+                    self:attack(0.5, "KP1005", "KP2005", "A_4", "C_3", finc_My_3_1, 0, nil, true)
                 end
-                scheduler:scheduleScriptFunc(timer,3, false)
+                
                 
             end
         end
@@ -203,7 +258,48 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             self.light_item:setVisible(false)
         end
     end
+    self.studioPage.Button_My_Card_1:addTouchEventListener(callBack)
+    self.studioPage.Button_My_Card_2:addTouchEventListener(callBack)
+    self.studioPage.Button_My_Card_3:addTouchEventListener(callBack)
+    self.studioPage.Button_My_Card_4:addTouchEventListener(callBack)
     self.studioPage.Button_My_Card_5:addTouchEventListener(callBack)
+
+    self.studioPage.Button_A_1:addTouchEventListener(callBack)
+    self.studioPage.Button_A_2:addTouchEventListener(callBack)
+    self.studioPage.Button_A_3:addTouchEventListener(callBack)
+    self.studioPage.Button_A_4:addTouchEventListener(callBack)
+    self.studioPage.Button_A_5:addTouchEventListener(callBack)
+
+    self.studioPage.Button_B_1:addTouchEventListener(callBack)
+    self.studioPage.Button_B_2:addTouchEventListener(callBack)
+    self.studioPage.Button_B_3:addTouchEventListener(callBack)
+    self.studioPage.Button_B_4:addTouchEventListener(callBack)
+    self.studioPage.Button_B_5:addTouchEventListener(callBack)
+
+    self.studioPage.Button_C_1:addTouchEventListener(callBack)
+    self.studioPage.Button_C_2:addTouchEventListener(callBack)
+    self.studioPage.Button_C_3:addTouchEventListener(callBack)
+    self.studioPage.Button_C_4:addTouchEventListener(callBack)
+    self.studioPage.Button_C_5:addTouchEventListener(callBack)
+
+    self.studioPage.Button_D_1:addTouchEventListener(callBack)
+    self.studioPage.Button_D_2:addTouchEventListener(callBack)
+    self.studioPage.Button_D_3:addTouchEventListener(callBack)
+    self.studioPage.Button_D_4:addTouchEventListener(callBack)
+    self.studioPage.Button_D_5:addTouchEventListener(callBack)
+
+    self.studioPage.Button_E_1:addTouchEventListener(callBack)
+    self.studioPage.Button_E_2:addTouchEventListener(callBack)
+    self.studioPage.Button_E_3:addTouchEventListener(callBack)
+    self.studioPage.Button_E_4:addTouchEventListener(callBack)
+    self.studioPage.Button_E_5:addTouchEventListener(callBack)
+
+
+    -- self.studioPage.Button_A_5:addTouchEventListener(callBack)
+    -- self.studioPage.Button_A_5:addTouchEventListener(callBack)
+    -- self.studioPage.Button_A_5:addTouchEventListener(callBack)
+    -- self.studioPage.Button_A_5:addTouchEventListener(callBack)
+    -- self.studioPage.Button_A_5:addTouchEventListener(callBack)
     print("ItemStoreUI:ctor 3")
 
 
@@ -238,6 +334,8 @@ function ItemStoreUI:onEnter()
     self.enemyHandCount = 5
     -- 所有在牌桌上面的牌
     self.allCardsInTable = {}
+    -- 场上所有已经暴露的牌
+    self.openedCards = {}
 
     self:doStep(1)
 end
@@ -307,8 +405,8 @@ function ItemStoreUI:doStep(stepID)
         self:showGuideTip(self.studioPage.Button_A_3)
     elseif stepID == 13 then
         -- TO-DO 在A3位置显示卡牌 大本营
-        self:addCardToTable("KP1000", "A_5", 1)
-        -- 摆拍结束显示地方放的所有的牌
+        self:addCardToTable("KP1000", "A_3", 1)
+        -- 摆拍结束显示敌方放的所有的牌
         self:showEnemyCards()
     elseif stepID == 14 then
         -- 引导玩家点击B5侦察排, 侦察C4位置的单位（暴露13师团），然后移动至C5
@@ -318,7 +416,7 @@ function ItemStoreUI:doStep(stepID)
         self:showGuideTip(self.studioPage.Button_C_4)
     elseif stepID == 16 then
         -- 暴露C4位置的13师团，然后移动至C5
-        self:changeCardTex(self.allCardsInTable.KP2003, "KP2003")
+        self:openTableCards("KP2003", true)
         self:showGuideTip(self.studioPage.Button_C_5)
     elseif stepID == 17 then
         -- B2大刀队移动至C2
@@ -327,8 +425,39 @@ function ItemStoreUI:doStep(stepID)
         -- B2大刀队移动至C2
         self:showGuideTip(self.studioPage.Button_C_2)
     elseif stepID == 19 then
+        -- 我放第一回合, 引导玩家点击自己的手牌
+        self:showGuideTip(self.studioPage.Button_My_Card_1)
+    elseif stepID == 20 then
         -- C3位置部署机枪阵地
         self:showGuideTip(self.studioPage.Button_C_3)
+    elseif stepID == 21 then
+        -- 开始我方第二回合
+        -- 引导玩家点击A4位105mm炮远程攻击C4位13师团（-5剩4血）。
+        self:showGuideTip(self.studioPage.Button_A_4)
+    elseif stepID == 22 then
+        -- 我方第二回合, 玩家点击了A4位105mm炮后, 引导远程攻击C4位13师团（-5剩4血）。
+        self:showGuideTip(self.studioPage.Button_C_4)
+    elseif stepID == 23 then
+        -- 我方第二回合, 部署工兵连于B5
+        self:showGuideTip(self.studioPage.Button_My_Card_1)
+    elseif stepID == 24 then
+        -- 我放第三回合 引导玩家点击A4位105炮远程攻击C3位95式坦克，并将其击毁。
+        self:showGuideTip(self.studioPage.Button_A_4)
+    elseif stepID == 25 then
+        -- 我方第三回合, 引导玩家点击C3位95式坦克，并将其击毁。
+        self:showGuideTip(self.studioPage.Button_C_3)
+    elseif stepID == 26 then
+        -- 我方第三回合, 引导点击B5工兵连移动至C4位
+        self:showGuideTip(self.studioPage.Button_B_5)
+    elseif stepID == 27 then
+        -- 我方第三回合, 引导点击C4位
+        self:showGuideTip(self.studioPage.Button_C_4)
+    elseif stepID == 28 then
+        -- 我方第三回合, 引导点击第一张手牌, 狙击队部署于B2
+        self:showGuideTip(self.studioPage.Button_My_Card_1)
+    elseif stepID == 29 then
+        -- 我方第三回合, 引导点击B2, 狙击队部署于B2
+        self:showGuideTip(self.studioPage.Button_B_2)
     end
 
 end
@@ -337,7 +466,8 @@ function ItemStoreUI:showGuideTip(fatherNode)
     local size = fatherNode:getContentSize()
     self._tipFrame:removeFromParent()
     fatherNode:addChild(self._tipFrame,1)
-    self._tipFrame:setPosition(cc.p(size.width/2,size.height/2))
+    -- self.studioPage["bottomContainer"]:addChild(self._tipFrame,1)
+    self._tipFrame:setPosition(cc.p(size.width/2, size.height/2))
 end
 
 function ItemStoreUI:showDBY_inHand(fatherNode)
@@ -345,7 +475,7 @@ function ItemStoreUI:showDBY_inHand(fatherNode)
 end
 
 -- 修改卡牌的纹理
-function ItemStoreUI:changeCardTex(cardNod, cardID, texPath)
+function ItemStoreUI:changeHandCardTex(cardNod, cardID, texPath)
     if cardID and not texPath then
         texPath = "fightImgs/tableCards/"..cardID..".png"
     end
@@ -354,41 +484,70 @@ function ItemStoreUI:changeCardTex(cardNod, cardID, texPath)
     cardNod:loadTextureDisabled(texPath,0)
 end
 
+-- 卡牌暴露了
+function ItemStoreUI:openTableCards(cardID, isEnemy)
+    print("ItemStoreUI:openTableCards 卡牌暴露了 cardID = "..tostring(cardID)
+        .." isEnemy = "..tostring(isEnemy))
+    local cardNode = self.allCardsInTable[cardID]
+
+    if not self.openedCards[cardID] then
+        self.openedCards[cardID] = true
+        -- TO-DO 修改卡牌的纹理
+        if string.find(cardID, "KP2") then
+            -- 表示是敌方的卡牌暴露了
+        else
+        end
+    end
+end
+
 -- 摆拍结束显示地方放的所有的牌
 function ItemStoreUI:showEnemyCards()
     local function timer()
         -- 特攻队D1, 狙击小队D2, 95式坦克D3, 105mm炮D4, 13师团D5, 大本营E4
-        self:addCardToTable("KP2002", "D_1")
-        self:addCardToTable("KP2006", "D_2")
-        self:addCardToTable("KP2005", "D_3")
-        self:addCardToTable("KP2004", "D_4")
-        self:addCardToTable("KP2003", "D_5")
-        self:addCardToTable("KP2000", "E_4")
+        self:addCardToTable("KP2002", "D_1", 5, true)
+        self:addCardToTable("KP2006", "D_2", 5, true)
+        self:addCardToTable("KP2005", "D_3", 4, true)
+        self:addCardToTable("KP2004", "D_4", 3, true)
+        self:addCardToTable("KP2003", "D_5", 2, true)
+        self:addCardToTable("KP2000", "E_4", 1, true)
 
         self:showTurnTip(true)
     end
     -- 延迟3s显示对方手牌
-    scheduler:scheduleScriptFunc(timer,3, false)
+    scheduler.performWithDelayGlobal(timer,3, false)
 end
 
 -- 放一张手牌到牌桌上面
 -- handIndex 表示是第几张手牌
 -- isEnemy true 表示是敌方放牌到牌桌上
 function ItemStoreUI:addCardToTable(cardID, posID, handIndex, isEnemy)
-    local card = ccui.ImageView:create("fightImgs/tableCards/"..cardID..".png")
-    self.allCardsInTable.cardID = card
+    print("ItemStoreUI:addCardToTable cardID = "..tostring(cardID).." posID = "..tostring(posID))
+    local card = self.studioPage["cardKuang"]:clone()  -- ccui.ImageView:create("fightImgs/tableCards/"..cardID..".png")
+    card:retain()
+    
     card:setTouchEnabled(false)
-    self.studioPage["Button_"..posID]:addChild(card)
+    local cardImg = card:getChildByName("cardImg")
+    cardImg:loadTexture("fightImgs/tableCards/"..cardID..".png")
+    self.studioPage["Panel_Cards"]:addChild(card)
+    card:setPosition(self.studioPage["Button_"..posID]:getPosition())
+
+    self.allCardsInTable[cardID] = card
     self._cardsNode[cardID] = card
 
 
     -- 移除手牌
     if not isEnemy then
-        self.studioPage["Button_My_Card_"..self.myHandCount]:setVisible(false)
-        self.myHandCount = self.myHandCount - 1
+        if self.myHandCount >= 1 then
+            print("self.myHandCount = "..tostring(self.myHandCount))
+            self.studioPage["Button_My_Card_"..self.myHandCount]:setVisible(false)
+            self.myHandCount = self.myHandCount - 1
+        end
     else
-        self.studioPage["enemy_Hand_Card_"..self.enemyHandCount]:setVisible(false)
-        self.enemyHandCount = self.enemyHandCount - 1
+        if self.enemyHandCount >= 1 and self.enemyHandCount <= 5 then
+            print("self.enemyHandCount = "..tostring(self.enemyHandCount))
+            self.studioPage["enemy_Hand_Card_"..self.enemyHandCount]:setVisible(false)
+            self.enemyHandCount = self.enemyHandCount - 1
+        end
     end
 
     -- 第一回合日军行动结束后, 国军开始行动
@@ -399,6 +558,7 @@ end
 
 -- 显示自己回合/敌方回合
 function ItemStoreUI:showTurnTip(isEnemy)
+    print("ItemStoreUI:showTurnTip isEnemy = "..tostring(isEnemy))
     if not self.turnCount then
         self.turnCount = 0
     end
@@ -422,7 +582,7 @@ function ItemStoreUI:enemyTurn( ... )
             self:addCardToHand("KP2001", true)
         end
         -- 延迟3s显示对方手牌
-        scheduler:scheduleScriptFunc(timer,1, false)
+        scheduler.performWithDelayGlobal(timer,1, false)
  
         local function finc1( ... )
             -- 侦察小队部署于D5
@@ -430,32 +590,152 @@ function ItemStoreUI:enemyTurn( ... )
         end
         -- D5位置13师团移动至C4位, 回调函数里面部署D5
         self:moveTableCard(2.5, "KP2003", "D_5", "C_4", finc1)
+    elseif self.turnCount == 2 then
+        -- 敌方抓一张手牌
+        local function timer()
+            self:addCardToHand("KP2001", true)
+        end
+        -- 延迟1s 抓手牌
+        scheduler.performWithDelayGlobal(timer,1, false)
+
+        local function finc1( ... )
+            local function finc2( ... )
+                local function finc3( ... )
+                    -- 侦察小队部署于D5
+                    self:addCardToTable("KP1009", "C_3", 1, true)
+                end
+                -- D4位105mm炮远程攻击C3机枪阵地并将其消灭
+                self:attack(0.5, "KP2004", "KP1009", "D_4", "C_3", finc3, 0, nil, true)
+            end
+            -- C4位13师团进攻并消灭C5侦察排后，再回防C4位
+            self:attack(0.5, "KP2003", "KP1001", "C_4", "C_5", finc2, 0, nil, true)
+        end
+        -- D3位95式坦克进攻C3位机枪阵地
+        self:attack(1.5, "KP2005", "KP1009", "D_3", "C_3", finc1, 1, nil, false)
+    elseif self.turnCount == 3 then
+        -- 敌方第三回合
+        --[[
+            A.D3位95式坦克进攻B3远征军
+                1)95式坦克-2剩3血  B3远征军-3剩8血。
+            B.C4位13师团进攻B4位，触雷被炸停1回合，
+                1)13师团-1剩3血。
+            D1特攻队移动至B1。
+        ]]
+        -- 敌方抓一张手牌
+        local function timer()
+            self:addCardToHand("KP2001", true)
+        end
+        -- 延迟1s 抓手牌
+        scheduler.performWithDelayGlobal(timer,1, false)
+
+        local function finc1( ... )
+            local function finc2( ... )
+                local function finc3( ... )
+                    -- 轮到我放第三回合
+                    self:showTurnTip()
+                end
+                -- D1特攻队移动至B1
+                self:moveTableCard(0.5, "KP2002", "D_1", "B_1", finc3)
+            end
+            -- C4位13师团进攻B4位，触雷被炸停1回合，13师团-1剩3血。
+            self:attack(0.5, "KP2003", "KP1010", "C_4", "B_4", finc2, nil, 3, false)
+        end
+        -- D3位95式坦克进攻B3远征军
+        self:attack(1.5, "KP2005", "KP1003", "D_3", "B_3", finc1, 8, 3, false)
+    elseif self.turnCount == 4 then
+        -- 敌方第三回合
+        --[[
+            A.D3位95式坦克进攻B3远征军
+                1)95式坦克-2剩3血  B3远征军-3剩8血。
+            B.C4位13师团进攻B4位，触雷被炸停1回合，
+                1)13师团-1剩3血。
+            D1特攻队移动至B1。
+        ]]
+        -- 敌方抓一张手牌
+        local function timer()
+            self:addCardToHand("KP2001", true)
+        end
+        -- 延迟1s 抓手牌
+        scheduler.performWithDelayGlobal(timer,1, false)
+
+        local function finc1( ... )
+            local function finc2( ... )
+                local function finc3( ... )
+                    -- 轮到我放第三回合
+                    self:showTurnTip()
+                end
+                -- D1特攻队移动至B1
+                self:moveTableCard(0.5, "KP2002", "D_1", "B_1", finc3)
+            end
+            -- C4位13师团进攻B4位，触雷被炸停1回合，13师团-1剩3血。
+            self:attack(0.5, "KP2003", "KP1010", "C_4", "B_4", finc2, nil, 3, false)
+        end
+        -- D3位95式坦克进攻B3远征军
+        self:attack(1.5, "KP2005", "KP1003", "D_3", "B_3", finc1, 8, 3, false)
     end
 end
 
 -- 轮到自己操作
 function ItemStoreUI:myTurn( ... )
     if self.turnCount == 1 then
+        self:addCardToHand("KP1009")
         -- 引导玩家点击B5侦察排, 侦察C4位置的单位（暴露13师团），然后移动至C5
         self:doStep(14)
+    elseif self.turnCount == 2 then
+        -- 我方第二回合
+        --[[
+        1.我方/敌方回合 文字闪过屏幕
+        2.屏幕中出现一张牌，显示为工兵连，进入我方卡牌中
+        3.行动：
+            A.A4位105mm炮远程攻击C4位13师团（-5剩4血）。
+            1)13师团-5血剩4血）
+            B.部署工兵连于B5。 
+        4.回合结束
+        ]]
+        self:addCardToHand("KP1006")
+        -- 引导玩家点击A4位105mm炮远程攻击C4位13师团（-5剩4血）。
+        self:doStep(21)
+    elseif self.turnCount == 3 then
+        -- 我方第三回合
+        --[[
+        2.狙击队进入我方卡牌中
+        3.行动：
+        A.A4位105炮远程攻击C3位95式坦克，并将其击毁。
+        1)95式坦克-5点血
+        B.B5工兵连移动至C4位。
+        C.狙击队部署于B2
+        ]]
+        self:addCardToHand("KP1007")
+        -- 引导玩家点击A4位105炮远程攻击C3位95式坦克，并将其击毁。
+        self:doStep(24)
     end
 end
 
 function ItemStoreUI:addCardToHand(cardID, isEnemy)
+    print("ItemStoreUI:addCardToHand cardID = "..tostring(cardID)
+        .." isEnemy = "..tostring(isEnemy))
     if not isEnemy then
+        print("self.myHandCount = "..tostring(self.myHandCount))
         self.myHandCount = self.myHandCount + 1
         self.studioPage["Button_My_Card_"..self.myHandCount]:setVisible(true)
-        self:changeCardTex(self.studioPage["Button_My_Card_"..self.myHandCount], cardID)
+        -- self:changeHandCardTex(self.studioPage["Button_My_Card_"..self.myHandCount], cardID)
 
     else
+        print("self.enemyHandCount = "..tostring(self.enemyHandCount))
         self.enemyHandCount = self.enemyHandCount + 1
+        self.studioPage["enemy_Hand_Card_"..self.enemyHandCount]:setVisible(true)
     end
 
 end
 
 -- 延迟几秒把敌方的卡片移动到目标位置
 function ItemStoreUI:moveTableCard(delayTime, cardID, nowPos, toPos, callFunc)
-    local cardNode = self.allCardsInTable.cardID
+    print("ItemStoreUI:moveTableCard cardID = "..tostring(cardID).." nowPos = "
+        ..tostring(nowPos).." toPos = "..tostring(toPos))
+    dump(self.allCardsInTable, "dump self.allCardsInTable")
+    local cardNode = self.allCardsInTable[cardID]
+    local x,y = cardNode:getPosition()
+    print("nowPos x = "..tostring(x).." y = "..tostring(y))
     if not self._enemyMoveIndex then
         self._enemyMoveIndex = 1
     end
@@ -468,10 +748,54 @@ function ItemStoreUI:moveTableCard(delayTime, cardID, nowPos, toPos, callFunc)
     end
     local act2 = cc.CallFunc:create(finc1)
     local x,y = self.studioPage["Button_"..toPos]:getPosition()
+    print("toPos x = "..tostring(x).." y = "..tostring(y))
     local moveAction = cc.MoveTo:create(0.5, cc.p(x, y))
     local seq  = cc.Sequence:create( act1, moveAction, act2)
     cardNode:runAction(seq)
     self._enemyMoveIndex = self._enemyMoveIndex + 1
+end
+
+-- bDead true表示被攻击的卡牌直接打死了
+-- leftBlood 表示被攻击的卡牌还剩多少血
+-- myLeftBlood 表示攻击的卡牌还剩多少血, nil表示这次攻击没扣
+function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc, leftBlood, myLeftBlood, bDead)
+    -- 攻击和被攻击的卡牌都要暴露出来
+    self:openTableCards(fromID)
+    self:openTableCards(attID)
+
+    local fromNode = self.allCardsInTable[fromID]
+    local x,y = fromNode:getPosition()
+
+    local act1 = cc.DelayTime:create(delayTime)
+
+    local function finc1( ... )
+        self:playAttackedAni(attID, bDead)
+    end
+    local act2 = cc.CallFunc:create(finc1)
+    
+
+    local function finc2( ... )
+        if callFunc then
+            callFunc()
+        end
+    end
+    local act3 = cc.CallFunc:create(finc2)
+    local toX, toY = self.allCardsInTable[attID]:getPosition()
+    print("toPos x = "..tostring(x).." y = "..tostring(y))
+    local moveAction1 = cc.MoveTo:create(0.5, cc.p(toX, toY))
+    local moveAction2 = cc.MoveTo:create(0.5, cc.p(x, y))
+
+    local seq  = cc.Sequence:create(act1, moveAction1, act2, moveAction2, act3)
+    fromNode:runAction(seq)
+end
+
+-- 播放被攻击的动画
+function ItemStoreUI:playAttackedAni(cardID, bDead)
+    print("ItemStoreUI:playAttackedAni 播放被攻击的动画 cardID = "
+        ..tostring(cardID).." bDead = "..tostring(bDead))
+    if bDead then
+        self.allCardsInTable[cardID]:setVisible(false)
+    end 
 end
 
 -- 记录所有的控件
