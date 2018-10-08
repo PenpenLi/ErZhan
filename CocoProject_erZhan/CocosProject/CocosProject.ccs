@@ -93,6 +93,21 @@
           <Image Name="95.png" />
           <Image Name="touming.png" />
         </Folder>
+        <Folder Name="cardImgs">
+          <Image Name="11.png" />
+          <Image Name="12.png" />
+          <Image Name="bg.png" />
+          <Image Name="bottom.png" />
+          <Image Name="13.png" />
+          <Image Name="cardImg.png" />
+          <Image Name="country.png" />
+          <Image Name="fight.png" />
+          <Image Name="kuang.png" />
+          <Image Name="myMoves.png" />
+          <Image Name="typeBg.png" />
+          <Image Name="up.png" />
+          <Image Name="xue.png" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>
