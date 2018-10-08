@@ -126,6 +126,9 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                         self:showTurnTip(true)
                     end
                     scheduler.performWithDelayGlobal(finc_My_3_3, 1.5, false)
+                elseif self._stepID == 31 then
+                    -- 我方第四回合, 引导点击B2狙击队, 狙击牵制A2特攻队
+                    self:doStep(32)
                 end
             elseif name =="Button_My_Card_4" then
                 if self._stepID == 3 then
@@ -251,7 +254,9 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     self:attack(0.5, "KP1005", "KP2005", "A_4", "C_3", finc_My_3_1, 0, nil, true)
                 end
                 
-                
+            elseif nam == "Button_A_2" then
+                -- 我方第四回合, 引导点击A2  B2狙击队狙击牵制A2特攻队
+                -- TO-DO 狙击
             end
         end
         if eventType == ccui.TouchEventType.canceled then
@@ -433,6 +438,7 @@ function ItemStoreUI:doStep(stepID)
     elseif stepID == 20 then
         -- C3位置部署机枪阵地
         self:showGuideTip(self.studioPage.Button_C_3)
+
     elseif stepID == 21 then
         -- 开始我方第二回合
         -- 引导玩家点击A4位105mm炮远程攻击C4位13师团（-5剩4血）。
@@ -446,6 +452,7 @@ function ItemStoreUI:doStep(stepID)
     elseif stepID == 24 then
         -- 我方第二回合, 部署工兵连于B5
         self:showGuideTip(self.studioPage.Button_B_5)
+
     elseif stepID == 25 then
         -- 我放第三回合 引导玩家点击A4位105炮远程攻击C3位95式坦克，并将其击毁。
         self:showGuideTip(self.studioPage.Button_A_4)
@@ -464,6 +471,13 @@ function ItemStoreUI:doStep(stepID)
     elseif stepID == 30 then
         -- 我方第三回合, 引导点击B2, 狙击队部署于B2
         self:showGuideTip(self.studioPage.Button_B_2)
+
+    elseif stepID == 31 then
+        -- 我方第四回合, 引导点击B2狙击队, 狙击牵制A2特攻队
+        self:showGuideTip(self.studioPage.Button_B_2)
+    elseif stepID == 32 then
+        -- 我方第四回合, 引导点击A2  B2狙击队狙击牵制A2特攻队
+        self:showGuideTip(self.studioPage.Button_A_2)
     end
 
 end
@@ -715,6 +729,21 @@ function ItemStoreUI:myTurn( ... )
         self:addCardToHand("KP1007")
         -- 引导玩家点击A4位105炮远程攻击C3位95式坦克，并将其击毁。
         self:doStep(25)
+    elseif self.turnCount == 4 then
+        -- 我方第四回合
+        --[[
+        2.骑兵队，进入我方卡牌中
+        3.行动：
+        A.B2狙击队狙击牵制A2特攻队
+        1)特攻队-1剩3血。
+        B.A4位105mm炮远程攻击消灭B4位13师团。
+        1)13师团-5死亡
+        C.C4位部署骑兵营，突击消灭D4位105mm炮，并坚守该位。
+        1)105mm炮-4死亡
+        ]]
+        self:addCardToHand("KP1008")
+        -- B2狙击队狙击牵制A2特攻队
+        self:doStep(31)
     end
 end
 
