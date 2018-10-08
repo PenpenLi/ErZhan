@@ -193,17 +193,17 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     self:doStep(13)
                 end
             elseif name == "Button_C_4" then
-                if stepID == 15 then 
+                if self._stepID == 15 then 
                     -- 引导玩家侦察C4位置的单位（暴露13师团），然后移动至C5
                     self:doStep(16)
-                elseif stepID == 22 then
+                elseif self._stepID == 22 then
                     -- 我方第二回合, A4 105mm炮远程攻击C4位13师团（-5剩4血）。
                     local function finc_My_2_1( ... )
                         -- 部署工兵连于B5
                         self:doStep(23)
                     end
                     self:attackattack(0.5, "KP1005", "KP2003", "A_4", "C_4", finc_My_2_1, 4, nil, false)
-                elseif stepID == 27 then
+                elseif self._stepID == 27 then
                     -- 我放第三回合, B5工兵连移动至C4位
                     local function finc_My_3_2( ... )
                         -- 我方第三回合, 引导点击第一张手牌, 狙击队部署于B2
