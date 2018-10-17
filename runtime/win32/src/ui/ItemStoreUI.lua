@@ -154,7 +154,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                         -- 引导点击第一张手牌, C4位部署骑兵营，突击消灭D4位105mm炮，并坚守该位
                         self:doStep(35)
                     end
-                    self:attack(0.5, "KP1005", "KP2003", "A_4", "B_4", finc_My_2_1, 0, nil, true)
+                    self:attack(0.5, "KP1005", "KP2003", "A_4", "B_4", finc_My_4_2, 0, nil, true)
                 elseif self._stepID == 44 then
                     -- 我方第五回合, 引导点击 B4位部署M3坦克
                     self:addCardToTable("KP1004", "B_4", 1)
@@ -166,7 +166,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     scheduler.performWithDelayGlobal(finc_My_5_4, 1, false)
                 elseif self._stepID == 45 then
                     -- B4位M3坦克碾压消灭A4骑兵小队，然后前进至C4。
-                    slef:doStep(46)
+                    self:doStep(46)
                 end
             elseif name =="Button_My_Card_2" then
                 if self._stepID == 7 then
@@ -179,7 +179,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     -- 我方第二回合, 玩家点击了A4位105mm炮后, 引导远程攻击C4位13师团（-5剩4血）。
                     self:doStep(22)
                 elseif self._stepID == 25 then
-                    -- 我方第三回合, 引导玩家点击A4位105炮远程攻击C3位95式坦克，并将其击毁。
+                    -- 我方第三回合, 引导玩家点击A4位105炮远程攻击D3位95式坦克，并将其击毁。
                     self:doStep(26)
                 elseif self._stepID == 33 then
                     -- 引导点击B4位13师团, A4位105mm炮远程攻击消灭B4位13师团
@@ -302,17 +302,6 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                         self:showTurnTip(true)
                     end
                     scheduler.performWithDelayGlobal(timer,3, false)
-                elseif self._stepID == 26 then
-                    -- 我方第三回合, 引导玩家A4 105mm炮攻击C3位95式坦克，并将其击毁。
-                    local function finc_My_3_1( ... )
-                        local function finc1( ... )
-                            -- 引导点击B5工兵连移动至C4位
-                            self:doStep(27)
-                        end
-                        -- 摧毁后要移动到该位置
-                        self:moveTableCard(0.5, "KP1005", "A_4", "C_3", finc1)
-                    end
-                    self:attack(0.5, "KP1005", "KP2005", "A_4", "C_3", finc_My_3_1, 0, nil, true)
                 end
                 
             elseif name == "Button_A_2" then
@@ -320,15 +309,15 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     -- 我方第四回合, 引导点击A2  B2狙击队狙击牵制A2特攻队
                     -- TO-DO 狙击
                     -- 引导点击A4位105mm炮, 远程攻击消灭B4位13师团
-                    local function finc_My_3_1( ... )
+                    local function finc_My_4_1( ... )
                         -- 引导点击A4位105mm炮
                         self:doStep(33)
                     end
-                    self:juJi("KP1007", "KP2002", "B_2", "A_2", finc_My_4_1, 3)
+                    self:juJi(0.5, "KP1007", "KP2002", "B_2", "A_2", finc_My_4_1, 3)
                 elseif self._stepID == 40 then
                     -- 我方第五回合, 点击了A2特工队, B2狙击队继续狙击牵制A2特攻队
                     local function finc_My_5_1( ... )
-                        -- 引导点击B2, 29军大刀队攻击消灭D2狙击手，然后移动至E2
+                        -- 引导点击C2, 29军大刀队攻击消灭D2狙击手，然后移动至E2
                         self:doStep(41)
                     end
                     self:juJi(0.5, "KP1007", "KP2002", "B_2", "A_2", finc_My_5_1, 2, nil, false)
@@ -338,11 +327,11 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     -- 我方第四回合, 点击D4, C4位置的骑兵营突击消灭D4位105mm炮，并坚守该位
                     local function finc_My_4_3( ... )
                         local function finc_My_4_4( ... )
-                            -- 引导点击B5工兵连移动至C4位
-                            self:showTurnTip()
+                            -- 敌方回合
+                            self:showTurnTip(true)
                         end
                         -- 攻击结束后移动到D4
-                        self:moveTableCard(2.5, "KP1008", "C_4", "D_4", finc_My_4_4)
+                        self:moveTableCard(0.5, "KP1008", "C_4", "D_4", finc_My_4_4)
                     end
                     self:attack(0.5, "KP1008", "KP2004", "C_4", "D_4", finc_My_4_3, 0, nil, true)
                 elseif self._stepID == 47 then
@@ -351,16 +340,16 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                 end
             elseif name == "Button_D_2" then
                 if self._stepID == 42 then
-                    -- 我方第五回合, C2 29军大刀队攻击消灭D2狙击手，然后移动至E2
+                    -- 我方第五回合, B2 29军大刀队攻击消灭D2狙击手，然后移动至E2
                     local function finc_My_5_2( ... )
                         -- C2 29军大刀队移动至E2
                         local function finc_My_5_3( ... )
                             -- 引导点击自己的手牌 B4位部署M3坦克
                             self:doStep(43)
                         end
-                        self:moveTableCard(2.5, "KP1002", "C_2", "E_2", finc_My_5_3)
+                        self:moveTableCard(2.5, "KP1002", "B_2", "E_2", finc_My_5_3)
                     end
-                    self:attack(0.5, "KP1002", "KP2006", "C_2", "D_2", finc_My_5_2, 0, nil, true)
+                    self:attack(0.5, "KP1002", "KP2006", "B_2", "D_2", finc_My_5_2, 0, nil, true)
                 end
             elseif name == "Button_E_4" then
                 -- 我方第六回合, 引导点击E4, D4骑兵营攻占E4位大本营
@@ -370,6 +359,15 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                         self:moveTableCard(2.5, "KP1008", "D_4", "E_4")
                     end
                     self:attack(0.5, "KP1008", "KP2000", "D_4", "E_4", finc_My_6_3, 0, nil, true)
+                end
+            elseif name == "Button_D_3" then
+                if self._stepID == 26 then
+                    -- 我方第三回合, 引导玩家A4 105mm炮攻击D3位95式坦克，并将其击毁。
+                    local function finc_My_3_1( ... )
+                        -- 引导点击B5工兵连移动至C4位
+                        self:doStep(27)
+                    end
+                    self:attack(0.5, "KP1005", "KP2005", "A_4", "C_3", finc_My_3_1, 0, nil, true)
                 end
             end
         end
@@ -568,11 +566,11 @@ function ItemStoreUI:doStep(stepID)
         self:showGuideTip(self.studioPage.Button_B_5)
 
     elseif stepID == 25 then
-        -- 我放第三回合 引导玩家点击A4位105炮远程攻击C3位95式坦克，并将其击毁。
+        -- 我放第三回合 引导玩家点击A4位105炮远程攻击D3位95式坦克，并将其击毁。
         self:showGuideTip(self.studioPage.Button_A_4)
     elseif stepID == 26 then
-        -- 我方第三回合, 引导玩家点击C3位95式坦克，并将其击毁。
-        self:showGuideTip(self.studioPage.Button_C_3)
+        -- 我方第三回合, 引导玩家点击D3位95式坦克，并将其击毁。
+        self:showGuideTip(self.studioPage.Button_D_3)
     elseif stepID == 27 then
         -- 我方第三回合, 引导点击B5工兵连移动至C4位
         self:showGuideTip(self.studioPage.Button_B_5)
@@ -783,13 +781,7 @@ function ItemStoreUI:enemyTurn( ... )
         local function finc1( ... )
             local function finc2( ... )
                 local function finc3( ... )
-                    local function finc4( ... )
-                        -- 侦察小队部署于D5
-                        -- self:addCardToTable("KP1009", "C_3", 1, true)
-                        self:showTurnTip()
-                    end
-                    -- D4位105mm炮远程进到C3位置
-                    self:moveTableCard(0.5, "KP2004", "D_4", "C_3", finc4)
+                    self:showTurnTip()
                 end
                 -- D4位105mm炮远程攻击C3机枪阵地并将其消灭, 消灭后要进到这个位置
                 self:attack(0.5, "KP2004", "KP1009", "D_4", "C_3", finc3, 0, nil, true)
@@ -818,14 +810,18 @@ function ItemStoreUI:enemyTurn( ... )
         local function finc1( ... )
             local function finc2( ... )
                 local function finc3( ... )
-                    -- 轮到我放第三回合
-                    self:showTurnTip()
+                    local function finc4( ... )
+                        -- 轮到我放第三回合
+                        self:showTurnTip()
+                    end
+                    -- D1特攻队移动至B1
+                    self:moveTableCard(0.5, "KP2002", "D_1", "B_1", finc4)
                 end
-                -- D1特攻队移动至B1
-                self:moveTableCard(0.5, "KP2002", "D_1", "B_1", finc3)
+                -- 13师团停在B4
+                self:moveTableCard(0.5, "KP2003", "C_4", "B_4", finc3)
             end
             -- C4位13师团进攻B4位，触雷被炸停1回合，13师团-1剩3血。
-            self:attack(0.5, "KP2003", "KP1010", "C_4", "B_4", finc2, nil, 3, false)
+            self:attack(0.5, "KP2003", "KP1010", "C_4", "B_4", finc2, 0, 3, true)
         end
         -- D3位95式坦克进攻B3远征军
         self:attack(1.5, "KP2005", "KP1003", "D_3", "B_3", finc1, 8, 3, false)
@@ -877,6 +873,7 @@ function ItemStoreUI:enemyTurn( ... )
 
         local function finc1( ... )
             local function finc2( ... )
+                self:addCardToTable("KP2007", "D_5", 1, true)
                 local function finc3( ... )
                     -- 轮到我放第四回合
                     self:showTurnTip()
@@ -908,17 +905,22 @@ function ItemStoreUI:enemyTurn( ... )
 
         local function finc1( ... )
             local function finc2( ... )
-                -- E3部署机枪阵地
-                self:addCardToTable("KP2009", "E_3", 1, true)
-                local function finc3()
-                    -- 轮到我放第六回合
-                    self:showTurnTip()
+                local function finc3( ... )
+                    -- E3部署机枪阵地
+                    self:addCardToTable("KP2009", "E_3", 1, true)
+                    local function finc3()
+                        -- 轮到我放第六回合
+                        self:showTurnTip()
+                    end
+                    -- 延迟1s 抓手牌
+                    scheduler.performWithDelayGlobal(finc3,1, false)
                 end
-                -- 延迟1s 抓手牌
-                scheduler.performWithDelayGlobal(finc3,1, false)
+                -- B5侦察小队进攻B4位的M3斯图亚特坦克被消灭
+                self:attack(0.5, "KP2001", "KP1004", "B_5", "B_4", finc2, 4, 0, false)
             end
-            -- B5侦察小队进攻B4位的M3斯图亚特坦克被消灭
-            self:attack(0.5, "KP2001", "KP1004", "B_5", "B_4", finc2, 4, 0, false)
+
+            -- A5骑兵移动到A4位
+            self:moveTableCard(0.5, "KP2007", "A_5", "A_4", finc3)
         end
         -- A5骑兵小队消灭A4位105mm炮。
         self:attack(0.5, "KP2007", "KP1005", "A_5", "A_4", finc1, 0, nil, true)
@@ -1062,6 +1064,10 @@ function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc,
 
     local function finc1( ... )
         self:playAttackedAni(attID, bDead)
+        if myLeftBlood and myLeftBlood == 0 then
+            local attackedNode = self.allCardsInTable[attID]
+            attackedNode:setVisible(false)
+        end
     end
     local act2 = cc.CallFunc:create(finc1)
     
@@ -1082,7 +1088,7 @@ function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc,
 end
 
 -- 狙击
-function ItemStoreUI:juJi(fromID, attID, fromPos, attPos, callFunc, leftBlood, bDead)
+function ItemStoreUI:juJi(delayTime, fromID, attID, fromPos, attPos, callFunc, leftBlood, bDead)
     print("ItemStoreUI:juJi fromID = "..tostring(fromID)
         .." attID = "..tostring(attID)
         .." fromPos = "..tostring(fromPos)
