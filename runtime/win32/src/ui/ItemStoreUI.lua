@@ -29,9 +29,9 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
         if callbackName == "clickEvent" then
             return function ()
                 print("node:getName() = "..tostring(node:getName()))
-                if node:getName() == "Button_My_Card_5" and self._stepID == 1 then
-                    self:doStep(2)
-                end
+                -- if node:getName() == "Button_My_Card_5" and self._stepID == 1 then
+                --     self:doStep(2)
+                -- end
                 if node:getName() == "skillBtn_2" then
                     if self.autoSkillPro then
                         viewMgr.show(viewMgr.def.TIPS_UI,1,self.autoSkillPro)
@@ -110,45 +110,57 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             if name == "Button_My_Card_5" then
                 print("click end studioPage.Button_My_Card_5")
                 if self._stepID == 1 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(2)
                 end
             elseif name == "Button_B_2" then
                 if self._stepID == 2 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(3)
                 elseif self._stepID == 17 then
+                    self._tipFrame:setVisible(false)
                     -- B2大刀队移动至C2
                     self:doStep(18)
                 elseif self._stepID == 30 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第三回合, 引导点击B2, 狙击队部署于B2
                     self:addCardToTable("KP1007", "B_2", 1)
                     local function finc_My_3_3( ... )
                         -- 轮到敌方第三回合
                         self:showTurnTip(true)
                     end
+                    self._tipFrame:setVisible(false)
                     scheduler.performWithDelayGlobal(finc_My_3_3, 1.5, false)
                 elseif self._stepID == 31 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第四回合, 引导点击B2狙击队, 狙击牵制A2特攻队
                     self:doStep(32)
                 elseif self._stepID == 39 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第五回合, 引导点击A2特工队, B2狙击队继续狙击牵制A2特攻队
                     self:doStep(40)
                 end
             elseif name =="Button_My_Card_4" then
                 if self._stepID == 3 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(4)
                 end
             elseif name =="Button_B_3" then
                 if self._stepID == 4 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(5)
                 end
             elseif name =="Button_My_Card_3" then
                 if self._stepID == 5 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(6)
                 end
             elseif name =="Button_B_4" then
                 if self._stepID == 6 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(7)
                 elseif self._stepID == 34 then
+                    self._tipFrame:setVisible(false)
                     -- 第四回合, 点击了B4位13师团, A4位105mm炮远程攻击消灭B4位13师团
                     local function finc_My_4_2( ... )
                         -- 引导点击第一张手牌, C4位部署骑兵营，突击消灭D4位105mm炮，并坚守该位
@@ -156,6 +168,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     end
                     self:attack(0.5, "KP1005", "KP2003", "A_4", "B_4", finc_My_4_2, 0, nil, true)
                 elseif self._stepID == 44 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第五回合, 引导点击 B4位部署M3坦克
                     self:addCardToTable("KP1004", "B_4", 1)
 
@@ -163,28 +176,36 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                         -- 轮到敌方第六回合
                         self:showTurnTip(true)
                     end
+                    self._tipFrame:setVisible(false)
                     scheduler.performWithDelayGlobal(finc_My_5_4, 1, false)
                 elseif self._stepID == 45 then
+                    self._tipFrame:setVisible(false)
                     -- B4位M3坦克碾压消灭A4骑兵小队，然后前进至C4。
                     self:doStep(46)
                 end
             elseif name =="Button_My_Card_2" then
                 if self._stepID == 7 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(8)
                 end
             elseif name =="Button_A_4" then
                 if self._stepID == 8 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(9)
                 elseif self._stepID == 21 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第二回合, 玩家点击了A4位105mm炮后, 引导远程攻击C4位13师团（-5剩4血）。
                     self:doStep(22)
                 elseif self._stepID == 25 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第三回合, 引导玩家点击A4位105炮远程攻击D3位95式坦克，并将其击毁。
                     self:doStep(26)
                 elseif self._stepID == 33 then
+                    self._tipFrame:setVisible(false)
                     -- 引导点击B4位13师团, A4位105mm炮远程攻击消灭B4位13师团
                     self:doStep(34)
                 elseif self._stepID == 46 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第六回和, 引导点击A4, B4位M3坦克碾压消灭A4骑兵小队，然后前进至C4。
                     local function finc_My_6_1( ... )
                         local function finc_My_6_2( ... )
@@ -198,53 +219,68 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                 end
             elseif name =="Button_My_Card_1" then
                 if self._stepID == 9 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(10)
                 elseif self._stepID == 11 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(12)
                 elseif self._stepID == 19 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第一回合
                     -- C3位置部署机枪阵地
                     self:doStep(20)
                 elseif self._stepID == 23 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第二回合, 部署工兵连于B5, 点击B5
                     self:doStep(24)
                 elseif self._stepID == 29 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第三回合, 引导点击B2, 狙击队部署于B2
                     self:doStep(30)
                 elseif self._stepID == 35 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第四回合, 引导点击C4, C4位部署骑兵营，突击消灭D4位105mm炮，并坚守该位
                     self:doStep(36)
                 elseif self._stepID == 43 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第五回合, 引导点击 B4位部署M3坦克
                     self:doStep(44)
                 end
             elseif name =="Button_B_5" then
                 if self._stepID == 10 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(11)
                 elseif self._stepID == 14 then
+                    self._tipFrame:setVisible(false)
                     -- 引导玩家点击B5侦察排, 侦察C4位置的单位（暴露13师团），然后移动至C5
                     self:doStep(15)
                 elseif self._stepID == 24 then
+                    self._tipFrame:setVisible(false)
                     -- 部署工兵连于B5
                     self:addCardToTable("KP1006", "B_5", 1)
                     local function timer( ... )
                         -- 轮到敌方第三回合
                         self:showTurnTip(true)
                     end
+                    self._tipFrame:setVisible(false)
                     scheduler.performWithDelayGlobal(timer,3, false)
                 elseif self._stepID == 27 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第三回合, 引导点击C4位
                     self:doStep(28)
                 end
             elseif name =="Button_A_3" then
                 if self._stepID == 12 then
+                    self._tipFrame:setVisible(false)
                     self:doStep(13)
                 end
             elseif name == "Button_C_4" then
                 if self._stepID == 15 then 
+                    self._tipFrame:setVisible(false)
                     -- 引导玩家侦察C4位置的单位（暴露13师团），然后移动至C5
                     self:doStep(16)
                 elseif self._stepID == 22 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第二回合, A4 105mm炮远程攻击C4位13师团（-5剩4血）。
                     local function finc_My_2_1( ... )
                         -- 部署工兵连于B5
@@ -252,6 +288,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     end
                     self:attack(0.5, "KP1005", "KP2003", "A_4", "C_4", finc_My_2_1, 4, nil, false)
                 elseif self._stepID == 28 then
+                    self._tipFrame:setVisible(false)
                     -- 我放第三回合, B5工兵连移动至C4位
                     local function finc_My_3_2( ... )
                         -- 我方第三回合, 引导点击第一张手牌, 狙击队部署于B2
@@ -259,6 +296,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     end
                     self:moveTableCard(0.5, "KP1006", "B_5", "C_4", finc_My_3_2)
                 elseif self._stepID == 36 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第四回合, 点击了C4, C4位部署骑兵营，突击消灭D4位105mm炮，并坚守该位
                     self:addCardToTable("KP1008", "C_4", 1)
                     -- 0.5s 后引导点击C4位置的骑兵营
@@ -268,6 +306,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     end
                     scheduler.performWithDelayGlobal(timer, 0.5, false)
                 elseif self._stepID == 37 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第四回合, 点击了C4位置的骑兵营, 引导点击D4, 突击消灭D4位105mm炮，并坚守该位
                     self:doStep(38)
                 end
@@ -275,6 +314,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             elseif name == "Button_C_5" then
                 -- 引导玩家点击B5侦察排 然后移动至C5
                 if self._stepID == 16 then
+                    self._tipFrame:setVisible(false)
                     local function callFunc( ... )
                         -- B2大刀队移动至C2
                         self:doStep(17)
@@ -284,11 +324,13 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             elseif name == "Button_C_2" then
                 -- 引导玩家点击B5侦察排 然后移动至C5
                 if self._stepID == 18 then
+                    self._tipFrame:setVisible(false)
                     local function callFunc( ... )
                         self:doStep(19)
                     end
                     self:moveTableCard(0.5, "KP1002", "B_2", "C_2", callFunc)
                 elseif self._stepID == 41 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第五回合, 引导点击D2, C2 29军大刀队攻击消灭D2狙击手，然后移动至E2
                     self:doStep(42)
                 end
@@ -296,16 +338,19 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             elseif name == "Button_C_3" then
                 -- C3位置部署机枪阵地
                 if self._stepID == 20 then
+                    self._tipFrame:setVisible(false)
                     self:addCardToTable("KP1009", "C_3", 1)
                     local function timer( ... )
                         -- 轮到敌方第二回合
                         self:showTurnTip(true)
                     end
+                    self._tipFrame:setVisible(false)
                     scheduler.performWithDelayGlobal(timer,3, false)
                 end
                 
             elseif name == "Button_A_2" then
                 if self._stepID == 32 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第四回合, 引导点击A2  B2狙击队狙击牵制A2特攻队
                     -- TO-DO 狙击
                     -- 引导点击A4位105mm炮, 远程攻击消灭B4位13师团
@@ -315,6 +360,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     end
                     self:juJi(0.5, "KP1007", "KP2002", "B_2", "A_2", finc_My_4_1, 3)
                 elseif self._stepID == 40 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第五回合, 点击了A2特工队, B2狙击队继续狙击牵制A2特攻队
                     local function finc_My_5_1( ... )
                         -- 引导点击C2, 29军大刀队攻击消灭D2狙击手，然后移动至E2
@@ -324,22 +370,26 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                 end
             elseif name == "Button_D_4" then
                 if self._stepID == 38 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第四回合, 点击D4, C4位置的骑兵营突击消灭D4位105mm炮，并坚守该位
                     local function finc_My_4_3( ... )
                         local function finc_My_4_4( ... )
                             -- 敌方回合
                             self:showTurnTip(true)
                         end
+                        self._tipFrame:setVisible(false)
                         -- 攻击结束后移动到D4
                         self:moveTableCard(0.5, "KP1008", "C_4", "D_4", finc_My_4_4)
                     end
                     self:attack(0.5, "KP1008", "KP2004", "C_4", "D_4", finc_My_4_3, 0, nil, true)
                 elseif self._stepID == 47 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第六回合, 引导点击E4, D4骑兵营攻占E4位大本营
                     self:doStep(48)
                 end
             elseif name == "Button_D_2" then
                 if self._stepID == 42 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第五回合, B2 29军大刀队攻击消灭D2狙击手，然后移动至E2
                     local function finc_My_5_2( ... )
                         -- C2 29军大刀队移动至E2
@@ -354,6 +404,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             elseif name == "Button_E_4" then
                 -- 我方第六回合, 引导点击E4, D4骑兵营攻占E4位大本营
                 if self._stepID == 48 then
+                    self._tipFrame:setVisible(false)
                     local function finc_My_6_3( ... )
                         -- 引导点击自己的手牌 B4位部署M3坦克
                         self:moveTableCard(2.5, "KP1008", "D_4", "E_4")
@@ -362,6 +413,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                 end
             elseif name == "Button_D_3" then
                 if self._stepID == 26 then
+                    self._tipFrame:setVisible(false)
                     -- 我方第三回合, 引导玩家A4 105mm炮攻击D3位95式坦克，并将其击毁。
                     local function finc_My_3_1( ... )
                         -- 引导点击B5工兵连移动至C4位
@@ -372,10 +424,10 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
             end
         end
         if eventType == ccui.TouchEventType.canceled then
-            self.light_ach:setVisible(false)
-            self.light_hero:setVisible(false)
-            self.light_icon:setVisible(false)
-            self.light_item:setVisible(false)
+            -- self.light_ach:setVisible(false)
+            -- self.light_hero:setVisible(false)
+            -- self.light_icon:setVisible(false)
+            -- self.light_item:setVisible(false)
         end
     end
     self.studioPage.Button_My_Card_1:addTouchEventListener(callBack)
@@ -436,7 +488,8 @@ function ItemStoreUI:onEnter()
     local size = btn:getContentSize()
     print("ItemStoreUI:onEnter() 2")
     self._tipFrame:setPosition(cc.p(size.width/2,size.height/2))
-    btn:addChild(self._tipFrame,1)
+    -- btn:addChild(self._tipFrame,1)
+    -- self:showGuideTip(btn)
     self._tipFrame:setTouchEnabled(false)
     self._tipFrame:setSwallowTouches(false)
     print("ItemStoreUI:onEnter() 3")
@@ -447,6 +500,8 @@ function ItemStoreUI:onEnter()
     -- finger:setName("finger_1")
     -- self.studioPage.bgBottom.Button_My_Card_5:addChild(finger)
     -- finger:setPosition(cc.p(spriteSize.width/2,spriteSize.height/2))
+
+    self.studioPage.Img_Turn_Img:setVisible(false)
 
     -- 自己有多少手牌
     self.myHandCount = 5
@@ -643,6 +698,7 @@ function ItemStoreUI:doStep(stepID)
 end
 
 function ItemStoreUI:showGuideTip(fatherNode)
+    self._tipFrame:setVisible(true)
     local size = fatherNode:getContentSize()
     self._tipFrame:removeFromParent()
     fatherNode:addChild(self._tipFrame,1)
@@ -693,6 +749,7 @@ function ItemStoreUI:showEnemyCards()
 
         self:showTurnTip(true)
     end
+    self._tipFrame:setVisible(false)
     -- 延迟3s显示对方手牌
     scheduler.performWithDelayGlobal(timer,3, false)
 end
@@ -908,19 +965,19 @@ function ItemStoreUI:enemyTurn( ... )
                 local function finc3( ... )
                     -- E3部署机枪阵地
                     self:addCardToTable("KP2009", "E_3", 1, true)
-                    local function finc3()
+                    local function finc4()
                         -- 轮到我放第六回合
                         self:showTurnTip()
                     end
                     -- 延迟1s 抓手牌
-                    scheduler.performWithDelayGlobal(finc3,1, false)
+                    scheduler.performWithDelayGlobal(finc4,1, false)
                 end
                 -- B5侦察小队进攻B4位的M3斯图亚特坦克被消灭
-                self:attack(0.5, "KP2001", "KP1004", "B_5", "B_4", finc2, 4, 0, false)
+                self:attack(0.5, "KP2001", "KP1004", "B_5", "B_4", finc3, 4, 0, false)
             end
 
             -- A5骑兵移动到A4位
-            self:moveTableCard(0.5, "KP2007", "A_5", "A_4", finc3)
+            self:moveTableCard(0.5, "KP2007", "A_5", "A_4", finc2)
         end
         -- A5骑兵小队消灭A4位105mm炮。
         self:attack(0.5, "KP2007", "KP1005", "A_5", "A_4", finc1, 0, nil, true)
@@ -929,6 +986,7 @@ end
 
 -- 轮到自己操作
 function ItemStoreUI:myTurn( ... )
+    self._tipFrame:setVisible(true)
     if self.turnCount == 1 then
         self:addCardToHand("KP1009")
         -- 引导玩家点击B5侦察排, 侦察C4位置的单位（暴露13师团），然后移动至C5
