@@ -771,6 +771,8 @@ function ItemStoreUI:addCardToTable(cardID, posID, handIndex, isEnemy)
     self.allCardsInTable[cardID] = card
     self._cardsNode[cardID] = card
 
+    -- 设置每一张卡牌各可以移动几步
+    self:setMoveCount(cardID)
 
     -- 移除手牌
     if not isEnemy then
@@ -796,6 +798,10 @@ end
 -- 显示自己回合/敌方回合
 function ItemStoreUI:showTurnTip(isEnemy)
     print("ItemStoreUI:showTurnTip isEnemy = "..tostring(isEnemy))
+    
+    -- 重置每一张牌的可以移动步数
+    self:showAllStep()
+
     if not self.turnCount then
         self.turnCount = 0
     end
@@ -1081,6 +1087,11 @@ function ItemStoreUI:moveTableCard(delayTime, cardID, nowPos, toPos, callFunc)
         ..tostring(nowPos).." toPos = "..tostring(toPos))
     dump(self.allCardsInTable, "dump self.allCardsInTable")
     local cardNode = self.allCardsInTable[cardID]
+    cardNode:setLocalZOrder(2)
+
+    -- 显示可以移动的步数
+    self:calMoveCount(cardNode)
+
     local x,y = cardNode:getPosition()
     print("nowPos x = "..tostring(x).." y = "..tostring(y))
     if not self._enemyMoveIndex then
@@ -1089,6 +1100,7 @@ function ItemStoreUI:moveTableCard(delayTime, cardID, nowPos, toPos, callFunc)
 
     local act1 = cc.DelayTime:create(delayTime)
     local function finc1( ... )
+        cardNode:setLocalZOrder(1)
         if callFunc then
             callFunc()
         end
@@ -1116,6 +1128,9 @@ function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc,
     self:openTableCards(attID)
 
     local fromNode = self.allCardsInTable[fromID]
+    fromNode:setLocalZOrder(2)
+    -- 显示可以移动的步数
+    self:calMoveCount(fromNode)
     local x,y = fromNode:getPosition()
 
     local act1 = cc.DelayTime:create(delayTime)
@@ -1131,6 +1146,7 @@ function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc,
     
 
     local function finc2( ... )
+        fromNode:setLocalZOrder(1)
         if callFunc then
             callFunc()
         end
@@ -1156,6 +1172,12 @@ function ItemStoreUI:juJi(delayTime, fromID, attID, fromPos, attPos, callFunc, l
     self:openTableCards(attID)
 
     local fromNode = self.allCardsInTable[fromID]
+    fromNode:setLocalZOrder(2)
+
+    -- 显示可以移动的步数
+    self:calMoveCount(fromNode)
+
+
     local x,y = fromNode:getPosition()
 
     local act1 = cc.DelayTime:create(delayTime)
@@ -1167,6 +1189,7 @@ function ItemStoreUI:juJi(delayTime, fromID, attID, fromPos, attPos, callFunc, l
     
 
     local function finc2( ... )
+        fromNode:setLocalZOrder(1)
         if callFunc then
             callFunc()
         end
@@ -1189,6 +1212,75 @@ function ItemStoreUI:playAttackedAni(cardID, bDead)
         self.allCardsInTable[cardID]:setVisible(false)
     end 
 end
+
+function ItemStoreUI:setMoveCount(cardID)
+    if cardID == "KP1000" or cardID == "KP1009" or cardID == "KP1010"
+        or cardID == "KP2000" or cardID == "KP2009" or cardID == "KP2010" then
+        self.allCardsInTable[cardID].cardMoveCount = 0
+        self.allCardsInTable[cardID].canMoveCount = 0
+
+    elseif cardID == "KP1005" or cardID == "KP2004" then
+        self.allCardsInTable[cardID].cardMoveCount = 1
+        self.allCardsInTable[cardID].canMoveCount = 1
+
+    elseif cardID == "KP1001" or cardID == "KP1002" or cardID == "KP1003"
+        or cardID == "KP1006" or cardID == "KP1007" or cardID == "KP2001"
+        or cardID == "KP2002" or cardID == "KP2003" or cardID == "KP2006"
+        or cardID == "KP2008" then
+        self.allCardsInTable[cardID].cardMoveCount = 2
+        self.allCardsInTable[cardID].canMoveCount = 2
+
+    elseif cardID == "KP1004" or cardID == "KP1008" or cardID == "KP2005"
+        or cardID == "KP2007"  then
+        self.allCardsInTable[cardID].cardMoveCount = 3
+        self.allCardsInTable[cardID].canMoveCount = 3
+    end
+
+    print("ItemStoreUI:setMoveCount cardID = "..tostring(cardID)
+        .." self.allCardsInTable[cardID].cardMoveCount = "..tostring(self.allCardsInTable[cardID].cardMoveCount))
+    for i = 1, 3 do
+        print("i = "..tostring(i))
+        local bottomBg = self.allCardsInTable[cardID]:getChildByName("bottomBg")
+        local moveImg = bottomBg:getChildByName("move_"..i)
+        if i <= self.allCardsInTable[cardID].cardMoveCount then
+            moveImg:setVisible(true)
+        else
+            moveImg:setVisible(false)
+        end
+    end
+end
+
+-- 显示可以移动的步数
+function ItemStoreUI:calMoveCount(cardNode)
+    cardNode.canMoveCount = cardNode.canMoveCount - 1
+    for i = 1, 3 do
+        local bottomBg = cardNode:getChildByName("bottomBg")
+        local moveImg = bottomBg:getChildByName("move_"..i)
+        if i <= cardNode.canMoveCount then
+            moveImg:setVisible(true)
+        else
+            moveImg:setVisible(false)
+        end
+    end
+end
+
+-- 每一局开始, 所有的卡牌上面的移动力都会满的
+function ItemStoreUI:showAllStep( ... )
+    for k,v in pairs(self.allCardsInTable) do
+        for i = 1, 3 do
+            local bottomBg = v:getChildByName("bottomBg")
+            local moveImg = bottomBg:getChildByName("move_"..i)
+
+            if i <= v.cardMoveCount then
+                moveImg:setVisible(true)
+                v.canMoveCount = i
+            else
+                moveImg:setVisible(false)
+            end
+        end
+    end
+end
+
 
 -- 记录所有的控件
 function ItemStoreUI:getAllElemets()
