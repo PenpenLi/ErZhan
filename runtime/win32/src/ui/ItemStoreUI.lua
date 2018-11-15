@@ -213,9 +213,9 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                             self:doStep(47)
                         end
                         -- B4位M3坦克前进至C4。
-                        self:moveTableCard(0.5, "KP1005", "B_4", "C_4", finc_My_6_2)
+                        self:moveTableCard(0.5, "KP1004", "B_4", "C_4", finc_My_6_2)
                     end
-                    self:attack(0.5, "KP1005", "KP2007", "B_4", "A_4", finc_My_6_1, 0, nil, false)
+                    self:attack(0.5, "KP1004", "KP2007", "B_4", "A_4", finc_My_6_1, 0, nil, false)
                 end
             elseif name =="Button_My_Card_1" then
                 if self._stepID == 9 then
@@ -532,6 +532,7 @@ function ItemStoreUI:doStep(stepID)
         self:addCardToTable("KP1002", "B_2", 5)
         self:addCardToHand("KP1000")
         -- 在第四张手牌位置显示提示按钮
+        self.studioPage.Button_My_Card_5:removeAllChildren()
         self:showGuideTip(self.studioPage.Button_My_Card_4)
         self:showDBY_inHand(self.studioPage.Button_My_Card_5)
     elseif stepID == 4 then
@@ -731,6 +732,10 @@ function ItemStoreUI:openTableCards(cardID, isEnemy)
         -- TO-DO 修改卡牌的纹理
         if string.find(cardID, "KP2") then
             -- 表示是敌方的卡牌暴露了
+            local backCard = cardNode:getChildByName("backCard")
+            if backCard then
+                backCard:setVisible(false)
+            end
         else
         end
     end
@@ -787,6 +792,12 @@ function ItemStoreUI:addCardToTable(cardID, posID, handIndex, isEnemy)
             self.studioPage["enemy_Hand_Card_"..self.enemyHandCount]:setVisible(false)
             self.enemyHandCount = self.enemyHandCount - 1
         end
+
+        -- 敌方卡牌覆盖一个背景图片
+        local backCard = ccui.ImageView:create("fightImgs/44.png")
+        backCard:setName("backCard")
+        self.allCardsInTable[cardID]:addChild(backCard)
+        backCard:setPosition(60, 90)
     end
 
     -- 第一回合日军行动结束后, 国军开始行动
@@ -1137,9 +1148,24 @@ function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc,
 
     local function finc1( ... )
         self:playAttackedAni(attID, bDead)
+        
+        -- 发动攻击的卡片更新血量显示
+        local upBg = self.allCardsInTable[fromID]:getChildByName("upBg")
+        local xueTiaoFrom = upBg:getChildByName("xueTiao_progress")
+        if myLeftBlood then
+            xueTiaoFrom:setPercent(myLeftBlood/self.allCardsInTable[fromID].allBlood * 100)
+        end
+        -- 被攻击的卡片更新血量显示
+        local upBg = self.allCardsInTable[attID]:getChildByName("upBg")
+        local xueTiaoBeAtt = upBg:getChildByName("xueTiao_progress")
+        if leftBlood then
+            xueTiaoBeAtt:setPercent(leftBlood/self.allCardsInTable[attID].allBlood * 100)
+        end
+
+	-- 发起攻击的卡片自己被消灭了
         if myLeftBlood and myLeftBlood == 0 then
-            local attackedNode = self.allCardsInTable[attID]
-            attackedNode:setVisible(false)
+            local fromNode = self.allCardsInTable[fromID]
+            fromNode:setVisible(false)
         end
     end
     local act2 = cc.CallFunc:create(finc1)
@@ -1248,6 +1274,55 @@ function ItemStoreUI:setMoveCount(cardID)
             moveImg:setVisible(false)
         end
     end
+
+    -- 配置血量
+    if cardID == "KP1000" then
+        self.allCardsInTable[cardID].allBlood = 0
+    elseif cardID == "KP1001" then
+        self.allCardsInTable[cardID].allBlood = 3
+    elseif cardID == "KP1002" then
+        self.allCardsInTable[cardID].allBlood = 4
+    elseif cardID == "KP1003" then
+        self.allCardsInTable[cardID].allBlood = 11
+    elseif cardID == "KP1004" then
+        self.allCardsInTable[cardID].allBlood = 5
+    elseif cardID == "KP1005" then
+        self.allCardsInTable[cardID].allBlood = 1
+    elseif cardID == "KP1006" then
+        self.allCardsInTable[cardID].allBlood = 1
+    elseif cardID == "KP1007" then
+        self.allCardsInTable[cardID].allBlood = 3
+    elseif cardID == "KP1008" then
+        self.allCardsInTable[cardID].allBlood = 3
+    elseif cardID == "KP1009" then
+        self.allCardsInTable[cardID].allBlood = 4
+    elseif cardID == "KP1010" then
+        self.allCardsInTable[cardID].allBlood = 0
+
+    elseif cardID == "KP2000" then
+        self.allCardsInTable[cardID].allBlood = 0
+    elseif cardID == "KP2001" then
+        self.allCardsInTable[cardID].allBlood = 2
+    elseif cardID == "KP2002" then
+        self.allCardsInTable[cardID].allBlood = 2
+    elseif cardID == "KP2003" then
+        self.allCardsInTable[cardID].allBlood = 2
+    elseif cardID == "KP2004" then
+        self.allCardsInTable[cardID].allBlood = 1
+    elseif cardID == "KP2005" then
+        self.allCardsInTable[cardID].allBlood = 3
+    elseif cardID == "KP2006" then
+        self.allCardsInTable[cardID].allBlood = 2
+    elseif cardID == "KP2007" then
+        self.allCardsInTable[cardID].allBlood = 3
+    elseif cardID == "KP2008" then
+        self.allCardsInTable[cardID].allBlood = 2
+    elseif cardID == "KP2009" then
+        self.allCardsInTable[cardID].allBlood = 0
+    elseif cardID == "KP2010" then
+        self.allCardsInTable[cardID].allBlood = 0
+    end    
+
 end
 
 -- 显示可以移动的步数
