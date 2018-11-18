@@ -407,7 +407,10 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     self._tipFrame:setVisible(false)
                     local function finc_My_6_3( ... )
                         -- 引导点击自己的手牌 B4位部署M3坦克
-                        self:moveTableCard(2.5, "KP1008", "D_4", "E_4")
+                        self:moveTableCard(0.1, "KP1008", "D_4", "E_4")
+                        -- 显示结算页面
+                        self.studioPage.resultImgNode:setVisible(true)
+                        self.studioPage.resultImg:setVisible(true)
                     end
                     self:attack(0.5, "KP1008", "KP2000", "D_4", "E_4", finc_My_6_3, 0, nil, true)
                 end
@@ -737,6 +740,12 @@ function ItemStoreUI:openTableCards(cardID, isEnemy)
                 backCard:setVisible(false)
             end
         else
+            -- 表示是我方的卡牌暴露了
+            local upBg   = cardNode:getChildByName("upBg")
+            local eyeImg = upBg:getChildByName("eye")
+            if eyeImg then
+                eyeImg:setVisible(true)
+            end
         end
     end
 end
@@ -798,6 +807,10 @@ function ItemStoreUI:addCardToTable(cardID, posID, handIndex, isEnemy)
         backCard:setName("backCard")
         self.allCardsInTable[cardID]:addChild(backCard)
         backCard:setPosition(60, 90)
+
+        -- 地方卡牌要显示日军的旗帜在上面
+        local countryImg = card:getChildByName("countryImg")
+        countryImg:loadTexture("cardImgs/japan.png")
     end
 
     -- 第一回合日军行动结束后, 国军开始行动
@@ -822,6 +835,7 @@ function ItemStoreUI:showTurnTip(isEnemy)
         self:enemyTurn()
     else
         self.studioPage["Img_Turn_Img"]:loadTexture("")
+        self.studioPage["turnImg"]:loadTexture("fightImgs/turn"..self.turnCount..".png")
         self:myTurn()
     end
 
