@@ -93,6 +93,14 @@
           <Image Name="95.png" />
           <Image Name="touming.png" />
           <Image Name="fightBg.png" />
+          <Image Name="resultImg.png" />
+          <Image Name="turn1.png" />
+          <Image Name="turn2.png" />
+          <Image Name="turn3.png" />
+          <Image Name="turn4.png" />
+          <Image Name="turn5.png" />
+          <Image Name="turn6.png" />
+          <Image Name="wangGe.png" />
         </Folder>
         <Folder Name="cardImgs">
           <Image Name="11.png" />
@@ -111,6 +119,9 @@
           <Image Name="lvSeXueTiao.png" />
           <Image Name="xueBg.png" />
           <Image Name="xueUp.png" />
+          <Image Name="guoJun.png" />
+          <Image Name="japan.png" />
+          <Image Name="eye.png" />
         </Folder>
       </RootFolder>
     </Group>

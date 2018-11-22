@@ -39,6 +39,17 @@
             <FileData Type="Normal" Path="fightImgs/allBg.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="wangGe_2" ActionTag="-456575161" Tag="75" IconVisible="False" LeftMargin="-353.0000" RightMargin="-353.0000" TopMargin="-470.0000" BottomMargin="-500.0000" ctype="SpriteObjectData">
+            <Size X="706.0000" Y="970.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position Y="-15.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Normal" Path="fightImgs/wangGe.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
           <AbstractNodeData Name="topContainer" ActionTag="1139015296" Tag="14" IconVisible="False" LeftMargin="-375.0000" RightMargin="-375.0000" TopMargin="-667.5000" BottomMargin="-667.5000" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="750.0000" Y="1335.0000" />
             <Children>
@@ -111,6 +122,16 @@
                 <NormalFileData Type="Normal" Path="fightImgs/73.png" Plist="" />
                 <OutlineColor A="255" R="0" G="0" B="0" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="turnImg" ActionTag="2021857971" Tag="73" IconVisible="False" LeftMargin="345.1163" RightMargin="339.8837" TopMargin="35.5510" BottomMargin="1265.4490" Scale9Width="65" Scale9Height="34" ctype="ImageViewObjectData">
+                <Size X="65.0000" Y="34.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="377.6163" Y="1282.4490" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5035" Y="0.9606" />
+                <PreSize X="0.0867" Y="0.0255" />
+                <FileData Type="Normal" Path="fightImgs/turn1.png" Plist="" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -757,7 +778,7 @@
               <AbstractNodeData Name="upBg" ActionTag="-1129311394" CallBackType="Click" Tag="110" IconVisible="False" LeftMargin="13.3211" RightMargin="2.6789" TopMargin="1.1000" BottomMargin="151.9000" Scale9Width="117" Scale9Height="29" ctype="ImageViewObjectData">
                 <Size X="117.0000" Y="29.0000" />
                 <Children>
-                  <AbstractNodeData Name="xueTiao_progress" ActionTag="1497094955" Tag="68" IconVisible="False" LeftMargin="3.6177" RightMargin="5.3822" TopMargin="2.0000" BottomMargin="7.0000" ProgressInfo="100" ctype="LoadingBarObjectData">
+                  <AbstractNodeData Name="xueTiao_progress" ActionTag="1497094955" Tag="68" IconVisible="False" LeftMargin="3.6177" RightMargin="5.3823" TopMargin="2.0000" BottomMargin="7.0000" ProgressInfo="100" ctype="LoadingBarObjectData">
                     <Size X="108.0000" Y="20.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="57.6177" Y="17.0000" />
@@ -790,13 +811,13 @@
                   <AbstractNodeData Name="Image_5" ActionTag="-576963261" Tag="111" IconVisible="False" LeftMargin="-21.2796" RightMargin="87.2796" TopMargin="-13.7375" BottomMargin="-10.2625" Scale9Width="51" Scale9Height="53" ctype="ImageViewObjectData">
                     <Size X="51.0000" Y="53.0000" />
                     <Children>
-                      <AbstractNodeData Name="cardType" ActionTag="1950489506" Tag="112" IconVisible="False" LeftMargin="14.1198" RightMargin="9.8802" TopMargin="19.3166" BottomMargin="16.6834" Scale9Width="27" Scale9Height="17" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="cardType" ActionTag="1950489506" Tag="112" IconVisible="False" LeftMargin="14.1198" RightMargin="9.8802" TopMargin="22.3166" BottomMargin="13.6834" Scale9Width="27" Scale9Height="17" ctype="ImageViewObjectData">
                         <Size X="27.0000" Y="17.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                        <Position X="27.6198" Y="25.1834" />
-                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <Position X="27.6198" Y="22.1834" />
+                        <Scale ScaleX="0.9000" ScaleY="0.9000" />
                         <CColor A="255" R="255" G="255" B="255" />
-                        <PrePosition X="0.5416" Y="0.4752" />
+                        <PrePosition X="0.5416" Y="0.4186" />
                         <PreSize X="0.5294" Y="0.3208" />
                         <FileData Type="Normal" Path="cardImgs/12.png" Plist="" />
                       </AbstractNodeData>
@@ -808,6 +829,16 @@
                     <PrePosition X="0.0361" Y="0.5599" />
                     <PreSize X="0.4359" Y="1.8276" />
                     <FileData Type="Normal" Path="cardImgs/typeBg.png" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="eye" ActionTag="-1146244288" VisibleForFrame="False" Tag="74" IconVisible="False" LeftMargin="-13.2932" RightMargin="94.2932" TopMargin="-15.1657" BottomMargin="8.1657" Scale9Width="36" Scale9Height="36" ctype="ImageViewObjectData">
+                    <Size X="36.0000" Y="36.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="4.7068" Y="26.1657" />
+                    <Scale ScaleX="0.7000" ScaleY="0.7000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0402" Y="0.9023" />
+                    <PreSize X="0.3077" Y="1.2414" />
+                    <FileData Type="Normal" Path="cardImgs/eye.png" Plist="" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -878,7 +909,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.2513" Y="0.1115" />
                 <PreSize X="0.4812" Y="0.2253" />
-                <FileData Type="Normal" Path="cardImgs/country.png" Plist="" />
+                <FileData Type="Normal" Path="cardImgs/guoJun.png" Plist="" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -888,6 +919,29 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="cardImgs/kuang.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="resultImgNode" ActionTag="42139678" VisibleForFrame="False" Tag="71" IconVisible="False" LeftMargin="-500.0000" RightMargin="-500.0000" TopMargin="-1000.0000" BottomMargin="-1000.0000" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+            <Size X="1000.0000" Y="2000.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <SingleColor A="255" R="0" G="0" B="0" />
+            <FirstColor A="255" R="150" G="200" B="255" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="resultImg" ActionTag="-1088473489" VisibleForFrame="False" Tag="70" IconVisible="False" LeftMargin="-372.3875" RightMargin="-377.6125" TopMargin="-310.2941" BottomMargin="-313.7059" Scale9Width="750" Scale9Height="624" ctype="ImageViewObjectData">
+            <Size X="750.0000" Y="624.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="2.6125" Y="-1.7059" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Normal" Path="fightImgs/resultImg.png" Plist="" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
