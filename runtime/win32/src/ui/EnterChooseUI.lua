@@ -111,7 +111,7 @@ function ChooseUI:onEnter()
     end
     viewMgr.show(viewMgr.def.MOUSE_UI)
     -- viewMgr.show(viewMgr.def.ITEMSTORE_UI)
-    viewMgr.show(viewMgr.def.HallScene_ErZhan_UI)
+    viewMgr.show(viewMgr.def.LoginScene_ErZhan)
 
     -- result = import("ui.FightNode").create(CallBack)
     -- self.root = result.root

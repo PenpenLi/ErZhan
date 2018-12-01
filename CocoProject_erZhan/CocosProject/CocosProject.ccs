@@ -132,6 +132,40 @@
           <Image Name="myCards.png" />
           <Image Name="toFight.png" />
         </Folder>
+        <Project Name="LoginNode.csd" Type="Node" />
+        <Folder Name="loginImgs">
+          <Image Name="loginBg.png" />
+          <Image Name="loginBtn.png" />
+          <Image Name="weChatBtn.png" />
+        </Folder>
+        <Project Name="HallAllCardsNode.csd" Type="Node" />
+        <Folder Name="hallAllCards">
+          <Image Name="guoJun_1.png" />
+          <Image Name="guoJun_10.png" />
+          <Image Name="cardBg.png" />
+          <Image Name="guoJun_13.png" />
+          <Image Name="lock.png" />
+          <Image Name="bottomBg_Black.png" />
+          <Image Name="myCardImg.png" />
+          <Image Name="guoJun_2.png" />
+          <Image Name="guoJun_3.png" />
+          <Image Name="backBtn.png" />
+          <Image Name="guoJun_4.png" />
+          <Image Name="gongJun.png" />
+          <Image Name="guoJun_Hei.png" />
+          <Image Name="guoJun_8.png" />
+          <Image Name="riJun.png" />
+          <Image Name="bottomBg.png" />
+          <Image Name="suJun.png" />
+          <Image Name="deJun.png" />
+          <Image Name="guoJun_5.png" />
+          <Image Name="guoJun_6.png" />
+          <Image Name="guoJun_7.png" />
+          <Image Name="guoJun_9.png" />
+          <Image Name="meiJun.png" />
+          <Image Name="riJun_Hei.png" />
+          <Image Name="yingJun.png" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

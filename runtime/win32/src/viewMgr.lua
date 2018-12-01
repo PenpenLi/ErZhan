@@ -41,6 +41,8 @@ viewMgr.def = {
     DailyAward     = { path = "ui.DailyAward.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "signui",showType = viewMgr.showType.POP},
     ITEMSTORE_UI   = { path = "ui.ItemStoreUI.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "itemstore",showType = viewMgr.showType.DEFAULT},
     HallScene_ErZhan_UI = { path = "ui.HallScene_ErZhan.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "HallScene_ErZhan",showType = viewMgr.showType.DEFAULT},
+    LoginScene_ErZhan = { path = "ui.LoginScene_ErZhan.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "LoginScene_ErZhan",showType = viewMgr.showType.DEFAULT},
+    HallAllCardsScene_ErZhan = { path = "ui.HallAllCardsScene_ErZhan.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "HallAllCardsScene_ErZhan",showType = viewMgr.showType.DEFAULT},
     
     GETNEWHERO_UI  = { path = "ui.GetNewHeroUI.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "getnewhero",showType = viewMgr.showType.POP},
     JIGSAW_UI      = { path = "ui.JigsawStudioUI.lua",zOrder = viewMgr.zOrder.MIDDLE,name = "jigsaw",showType = viewMgr.showType.POP},
