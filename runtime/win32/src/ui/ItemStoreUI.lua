@@ -504,7 +504,7 @@ function ItemStoreUI:onEnter()
     -- self.studioPage.bgBottom.Button_My_Card_5:addChild(finger)
     -- finger:setPosition(cc.p(spriteSize.width/2,spriteSize.height/2))
 
-    self.studioPage.Img_Turn_Img:setVisible(false)
+    -- self.studioPage.Img_Turn_Img:setVisible(false)
 
     -- 自己有多少手牌
     self.myHandCount = 5
@@ -829,14 +829,28 @@ function ItemStoreUI:showTurnTip(isEnemy)
     if not self.turnCount then
         self.turnCount = 0
     end
+    self.studioPage["Panel_Turn"]:setVisible(true)
     if isEnemy then
         self.turnCount = self.turnCount + 1
-        self.studioPage["Img_Turn_Img"]:loadTexture("")
-        self:enemyTurn()
+        self.studioPage["Img_Turn_Img"]:loadTexture("fightImgs/yourTurnImg.png")
+
+        local function timer()
+            self.studioPage["Panel_Turn"]:setVisible(false)
+            self:enemyTurn()
+        end
+        -- 延迟3s显示对方手牌
+        scheduler.performWithDelayGlobal(timer,1.5, false)
+        
     else
-        self.studioPage["Img_Turn_Img"]:loadTexture("")
+        self.studioPage["Img_Turn_Img"]:loadTexture("fightImgs/myTurnImg.png")
         self.studioPage["turnImg"]:loadTexture("fightImgs/turn"..self.turnCount..".png")
-        self:myTurn()
+
+        local function timer()
+            self.studioPage["Panel_Turn"]:setVisible(false)
+            self:myTurn()
+        end
+        -- 延迟3s显示对方手牌
+        scheduler.performWithDelayGlobal(timer,1.5, false)
     end
 
     
