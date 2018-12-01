@@ -133,6 +133,17 @@
                 <PreSize X="0.0867" Y="0.0255" />
                 <FileData Type="Normal" Path="fightImgs/turn1.png" Plist="" />
               </AbstractNodeData>
+              <AbstractNodeData Name="name_19" ActionTag="1865473012" Tag="151" IconVisible="False" LeftMargin="118.2158" RightMargin="503.7842" TopMargin="19.7058" BottomMargin="1264.2942" ctype="SpriteObjectData">
+                <Size X="128.0000" Y="51.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="182.2158" Y="1289.7942" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2430" Y="0.9661" />
+                <PreSize X="0.1707" Y="0.0382" />
+                <FileData Type="Normal" Path="fightImgs/name.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
@@ -601,15 +612,30 @@
                 <PreSize X="0.0693" Y="0.0599" />
                 <FileData Type="Normal" Path="fightImgs/85.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="Img_Turn_Img" ActionTag="170831668" Tag="57" IconVisible="False" LeftMargin="2.6233" RightMargin="-2.6233" TopMargin="546.5634" BottomMargin="688.4366" Scale9Width="750" Scale9Height="100" ctype="ImageViewObjectData">
-                <Size X="750.0000" Y="100.0000" />
+              <AbstractNodeData Name="Panel_Turn" ActionTag="-1013791030" VisibleForFrame="False" Tag="150" IconVisible="False" LeftMargin="-122.3126" RightMargin="-127.6874" TopMargin="-331.9319" BottomMargin="-333.0681" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Size X="1000.0000" Y="2000.0000" />
+                <Children>
+                  <AbstractNodeData Name="Img_Turn_Img" ActionTag="170831668" Tag="57" IconVisible="False" LeftMargin="211.5498" RightMargin="224.4502" TopMargin="838.8505" BottomMargin="848.1495" Scale9Width="564" Scale9Height="313" ctype="ImageViewObjectData">
+                    <Size X="564.0000" Y="313.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="493.5498" Y="1004.6495" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4935" Y="0.5023" />
+                    <PreSize X="0.5640" Y="0.1565" />
+                    <FileData Type="Normal" Path="fightImgs/yourTurnImg.png" Plist="" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="377.6233" Y="738.4366" />
+                <Position X="377.6874" Y="666.9319" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5035" Y="0.5531" />
-                <PreSize X="1.0000" Y="0.0749" />
-                <FileData Type="Normal" Path="fightImgs/46.png" Plist="" />
+                <PrePosition X="0.5036" Y="0.4996" />
+                <PreSize X="1.3333" Y="1.4981" />
+                <SingleColor A="255" R="0" G="0" B="0" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -920,7 +946,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="cardImgs/kuang.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resultImgNode" ActionTag="42139678" VisibleForFrame="False" Tag="71" IconVisible="False" LeftMargin="-500.0000" RightMargin="-500.0000" TopMargin="-1000.0000" BottomMargin="-1000.0000" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+          <AbstractNodeData Name="resultImgNode" ActionTag="42139678" VisibleForFrame="False" Tag="71" IconVisible="False" LeftMargin="-500.0000" RightMargin="-500.0000" TopMargin="-1000.0000" BottomMargin="-1000.0000" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1000.0000" Y="2000.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />

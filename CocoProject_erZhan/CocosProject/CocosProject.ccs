@@ -101,6 +101,9 @@
           <Image Name="turn5.png" />
           <Image Name="turn6.png" />
           <Image Name="wangGe.png" />
+          <Image Name="myTurnImg.png" />
+          <Image Name="yourTurnImg.png" />
+          <Image Name="name.png" />
         </Folder>
         <Folder Name="cardImgs">
           <Image Name="11.png" />
@@ -122,6 +125,12 @@
           <Image Name="guoJun.png" />
           <Image Name="japan.png" />
           <Image Name="eye.png" />
+        </Folder>
+        <Project Name="HallNode.csd" Type="Node" />
+        <Folder Name="hallImgs">
+          <Image Name="hallBg.png" />
+          <Image Name="myCards.png" />
+          <Image Name="toFight.png" />
         </Folder>
       </RootFolder>
     </Group>
