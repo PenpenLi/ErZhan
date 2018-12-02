@@ -117,6 +117,21 @@
                     <FileData Type="Normal" Path="hallAllCards/guoJun_4.png" Plist="" />
                     <BlendFunc Src="770" Dst="771" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="Button_Hall_4" ActionTag="1754706980" Tag="65" IconVisible="False" LeftMargin="-5.0108" RightMargin="0.0108" TopMargin="3.5173" BottomMargin="12.4827" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="3" RightEage="3" TopEage="3" BottomEage="3" Scale9OriginX="3" Scale9OriginY="3" Scale9Width="4" Scale9Height="4" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                    <Size X="165.0000" Y="165.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="77.4892" Y="94.9827" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4843" Y="0.5248" />
+                    <PreSize X="1.0313" Y="0.9116" />
+                    <TextColor A="255" R="65" G="65" B="70" />
+                    <DisabledFileData Type="Normal" Path="touming.png" Plist="" />
+                    <PressedFileData Type="Normal" Path="touming.png" Plist="" />
+                    <NormalFileData Type="Normal" Path="touming.png" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="661.4128" Y="1046.7480" />
@@ -154,14 +169,14 @@
               <AbstractNodeData Name="cardBg_12_6" ActionTag="-362379349" Tag="26" IconVisible="False" LeftMargin="243.0683" RightMargin="425.9317" TopMargin="442.9249" BottomMargin="742.0751" ctype="SpriteObjectData">
                 <Size X="160.0000" Y="181.0000" />
                 <Children>
-                  <AbstractNodeData Name="guoJun_1_6" ActionTag="-113564486" Tag="8" IconVisible="False" RightMargin="6.0000" TopMargin="7.0000" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="guoJun_1_6" ActionTag="-113564486" Tag="8" IconVisible="False" RightMargin="6.0000" TopMargin="8.0000" BottomMargin="1.0000" ctype="SpriteObjectData">
                     <Size X="154.0000" Y="172.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="77.0000" Y="87.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4812" Y="0.4807" />
-                    <PreSize X="0.9625" Y="0.9613" />
+                    <PreSize X="0.9625" Y="0.9503" />
                     <FileData Type="Normal" Path="hallAllCards/guoJun_6.png" Plist="" />
                     <BlendFunc Src="770" Dst="771" />
                   </AbstractNodeData>
@@ -178,14 +193,14 @@
               <AbstractNodeData Name="cardBg_12_7" ActionTag="-1661829725" Tag="27" IconVisible="False" LeftMargin="412.2405" RightMargin="256.7595" TopMargin="442.9249" BottomMargin="742.0751" ctype="SpriteObjectData">
                 <Size X="160.0000" Y="181.0000" />
                 <Children>
-                  <AbstractNodeData Name="guoJun_1_7" ActionTag="1775767218" Tag="9" IconVisible="False" LeftMargin="54.0000" RightMargin="60.0000" TopMargin="71.0000" BottomMargin="64.0000" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="guoJun_1_7" ActionTag="1775767218" Tag="9" IconVisible="False" LeftMargin="5.5000" RightMargin="11.5000" TopMargin="7.0000" ctype="SpriteObjectData">
                     <Size X="143.0000" Y="174.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="77.0000" Y="87.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4812" Y="0.4807" />
-                    <PreSize X="0.2875" Y="0.2541" />
+                    <PreSize X="0.8938" Y="0.9613" />
                     <FileData Type="Normal" Path="hallAllCards/guoJun_7.png" Plist="" />
                     <BlendFunc Src="770" Dst="771" />
                   </AbstractNodeData>
@@ -202,14 +217,14 @@
               <AbstractNodeData Name="cardBg_12_8" ActionTag="-1728884285" Tag="28" IconVisible="False" LeftMargin="581.4128" RightMargin="87.5872" TopMargin="442.9249" BottomMargin="742.0751" ctype="SpriteObjectData">
                 <Size X="160.0000" Y="181.0000" />
                 <Children>
-                  <AbstractNodeData Name="guoJun_1_8" ActionTag="-1852368885" Tag="11" IconVisible="False" LeftMargin="54.0000" RightMargin="60.0000" TopMargin="71.0000" BottomMargin="64.0000" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="guoJun_1_8" ActionTag="-1852368885" Tag="11" IconVisible="False" RightMargin="6.0000" TopMargin="7.0000" ctype="SpriteObjectData">
                     <Size X="154.0000" Y="174.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="77.0000" Y="87.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4812" Y="0.4807" />
-                    <PreSize X="0.2875" Y="0.2541" />
+                    <PreSize X="0.9625" Y="0.9613" />
                     <FileData Type="Normal" Path="hallAllCards/guoJun_8.png" Plist="" />
                     <BlendFunc Src="770" Dst="771" />
                   </AbstractNodeData>
@@ -250,7 +265,7 @@
               <AbstractNodeData Name="cardBg_1_10" ActionTag="-1664346280" Tag="30" IconVisible="False" LeftMargin="243.0682" RightMargin="425.9318" TopMargin="655.3297" BottomMargin="529.6703" ctype="SpriteObjectData">
                 <Size X="160.0000" Y="181.0000" />
                 <Children>
-                  <AbstractNodeData Name="Button_Hall_KP1003" ActionTag="1586692379" Tag="34" IconVisible="False" LeftMargin="4.1758" RightMargin="1.8242" TopMargin="5.5954" BottomMargin="1.4046" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="124" Scale9Height="152" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                  <AbstractNodeData Name="Button_nouse" ActionTag="1586692379" Tag="34" IconVisible="False" LeftMargin="4.1758" RightMargin="1.8242" TopMargin="5.5954" BottomMargin="1.4046" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="124" Scale9Height="152" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="154.0000" Y="174.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="81.1758" Y="88.4046" />
@@ -262,6 +277,21 @@
                     <DisabledFileData Type="Normal" Path="hallAllCards/guoJun_10.png" Plist="" />
                     <PressedFileData Type="Normal" Path="hallAllCards/guoJun_10.png" Plist="" />
                     <NormalFileData Type="Normal" Path="hallAllCards/guoJun_10.png" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="Button_Hall_10" ActionTag="-701012854" Tag="64" IconVisible="False" LeftMargin="-2.7657" RightMargin="-2.2343" TopMargin="10.9244" BottomMargin="5.0756" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="3" RightEage="3" TopEage="3" BottomEage="3" Scale9OriginX="3" Scale9OriginY="3" Scale9Width="4" Scale9Height="4" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                    <Size X="165.0000" Y="165.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="79.7343" Y="87.5756" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4983" Y="0.4838" />
+                    <PreSize X="1.0313" Y="0.9116" />
+                    <TextColor A="255" R="65" G="65" B="70" />
+                    <DisabledFileData Type="Normal" Path="touming.png" Plist="" />
+                    <PressedFileData Type="Normal" Path="touming.png" Plist="" />
+                    <NormalFileData Type="Normal" Path="touming.png" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -535,6 +565,227 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="1350" Height="126" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Panel_Card_Detail" ActionTag="2053496330" VisibleForFrame="False" Tag="45" IconVisible="False" LeftMargin="-419.5000" RightMargin="-419.5000" TopMargin="-683.0000" BottomMargin="-683.0000" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+            <Size X="839.0000" Y="1366.0000" />
+            <Children>
+              <AbstractNodeData Name="bg_1" CanEdit="False" ActionTag="1427097790" Tag="46" IconVisible="False" LeftMargin="38.0905" RightMargin="49.9095" TopMargin="211.0509" BottomMargin="210.9491" ctype="SpriteObjectData">
+                <Size X="751.0000" Y="944.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="413.5905" Y="682.9491" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4930" Y="0.5000" />
+                <PreSize X="0.8951" Y="0.6911" />
+                <FileData Type="Normal" Path="cardDetail/bg.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_1" ActionTag="-289083280" Tag="49" IconVisible="False" LeftMargin="390.3207" RightMargin="175.6793" TopMargin="394.9451" BottomMargin="919.0549" FontSize="26" LabelText="发动奔袭时行动力为3，&#xA;出奇制胜。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="273.0000" Y="52.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="526.8207" Y="945.0549" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <PrePosition X="0.6279" Y="0.6918" />
+                <PreSize X="0.3254" Y="0.0381" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="card_Img" ActionTag="613293752" Tag="48" IconVisible="False" LeftMargin="147.9425" RightMargin="537.0575" TopMargin="375.7507" BottomMargin="816.2493" Scale9Width="154" Scale9Height="174" ctype="ImageViewObjectData">
+                <Size X="154.0000" Y="174.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="224.9425" Y="903.2493" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2681" Y="0.6612" />
+                <PreSize X="0.1836" Y="0.1274" />
+                <FileData Type="Normal" Path="hallAllCards/guoJun_10.png" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="fire_4" ActionTag="1132273046" Tag="53" IconVisible="False" LeftMargin="185.9136" RightMargin="573.0864" TopMargin="630.3816" BottomMargin="655.6184" ctype="SpriteObjectData">
+                <Size X="80.0000" Y="80.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="225.9136" Y="695.6184" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2693" Y="0.5092" />
+                <PreSize X="0.0954" Y="0.0586" />
+                <FileData Type="Normal" Path="cardDetail/fire.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_2" ActionTag="286081866" Tag="54" IconVisible="False" LeftMargin="279.9166" RightMargin="455.0834" TopMargin="642.0593" BottomMargin="697.9407" FontSize="26" LabelText="火力伤害" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="104.0000" Y="26.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="331.9166" Y="710.9407" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <PrePosition X="0.3956" Y="0.5205" />
+                <PreSize X="0.1240" Y="0.0190" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_Fire" ActionTag="159889800" Tag="55" IconVisible="False" LeftMargin="279.9166" RightMargin="507.0834" TopMargin="675.7974" BottomMargin="664.2026" FontSize="26" LabelText="1600" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="52.0000" Y="26.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="279.9166" Y="677.2026" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="0" B="0" />
+                <PrePosition X="0.3336" Y="0.4958" />
+                <PreSize X="0.0620" Y="0.0190" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="defance_3" ActionTag="262632096" Tag="52" IconVisible="False" LeftMargin="402.9071" RightMargin="355.0929" TopMargin="731.9792" BottomMargin="553.0208" ctype="SpriteObjectData">
+                <Size X="81.0000" Y="81.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="443.4071" Y="593.5208" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5285" Y="0.4345" />
+                <PreSize X="0.0965" Y="0.0593" />
+                <FileData Type="Normal" Path="cardDetail/defance.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_Defence" ActionTag="-1182720572" Tag="57" IconVisible="False" LeftMargin="501.0684" RightMargin="233.9316" TopMargin="778.1193" BottomMargin="561.8807" FontSize="26" LabelText="步兵单位" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="104.0000" Y="26.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="501.0684" Y="574.8807" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="0" B="0" />
+                <PrePosition X="0.5972" Y="0.4208" />
+                <PreSize X="0.1240" Y="0.0190" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_2_0" ActionTag="-1857600101" Tag="56" IconVisible="False" LeftMargin="501.0682" RightMargin="285.9318" TopMargin="743.6198" BottomMargin="596.3802" FontSize="26" LabelText="类型" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="52.0000" Y="26.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="527.0682" Y="609.3802" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <PrePosition X="0.6282" Y="0.4461" />
+                <PreSize X="0.0620" Y="0.0190" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="blood_2" ActionTag="1167690415" Tag="51" IconVisible="False" LeftMargin="402.9071" RightMargin="355.0929" TopMargin="630.3834" BottomMargin="654.6166" ctype="SpriteObjectData">
+                <Size X="81.0000" Y="81.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="443.4071" Y="695.1166" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5285" Y="0.5089" />
+                <PreSize X="0.0965" Y="0.0593" />
+                <FileData Type="Normal" Path="cardDetail/blood.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_Blood" ActionTag="-318627470" Tag="58" IconVisible="False" LeftMargin="501.0681" RightMargin="298.9319" TopMargin="675.7974" BottomMargin="664.2026" FontSize="26" LabelText="800" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="39.0000" Y="26.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="501.0681" Y="677.2026" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="0" B="0" />
+                <PrePosition X="0.5972" Y="0.4958" />
+                <PreSize X="0.0465" Y="0.0190" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_2_0_0" ActionTag="-1390981366" Tag="59" IconVisible="False" LeftMargin="501.0681" RightMargin="259.9319" TopMargin="642.0593" BottomMargin="697.9407" FontSize="26" LabelText="生命值" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="78.0000" Y="26.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="540.0681" Y="710.9407" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <PrePosition X="0.6437" Y="0.5205" />
+                <PreSize X="0.0930" Y="0.0190" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="attack_range_1" ActionTag="72658666" Tag="50" IconVisible="False" LeftMargin="185.9067" RightMargin="568.0933" TopMargin="727.9788" BottomMargin="553.0212" ctype="SpriteObjectData">
+                <Size X="85.0000" Y="85.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="228.4067" Y="595.5212" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2722" Y="0.4360" />
+                <PreSize X="0.1013" Y="0.0622" />
+                <FileData Type="Normal" Path="cardDetail/attack_range.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_Attack_Range" ActionTag="-89390951" Tag="60" IconVisible="False" LeftMargin="281.9167" RightMargin="518.0833" TopMargin="778.1193" BottomMargin="561.8807" FontSize="26" LabelText="800" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="39.0000" Y="26.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="281.9167" Y="574.8807" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="0" B="0" />
+                <PrePosition X="0.3360" Y="0.4208" />
+                <PreSize X="0.0465" Y="0.0190" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_2_0_0_0" ActionTag="943472684" Tag="61" IconVisible="False" LeftMargin="279.9166" RightMargin="455.0834" TopMargin="743.6198" BottomMargin="596.3802" FontSize="26" LabelText="攻击范围" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="104.0000" Y="26.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="331.9166" Y="609.3802" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <PrePosition X="0.3956" Y="0.4461" />
+                <PreSize X="0.1240" Y="0.0190" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="ScrollView_CardDetail" ActionTag="2105800125" Tag="62" IconVisible="False" LeftMargin="201.6171" RightMargin="217.3829" TopMargin="876.7266" BottomMargin="289.2734" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+                <Size X="420.0000" Y="200.0000" />
+                <Children>
+                  <AbstractNodeData Name="Text_Card_Detail" ActionTag="-1705437207" Tag="63" IconVisible="False" LeftMargin="30.1017" RightMargin="38.8983" TopMargin="11.7905" BottomMargin="94.2095" IsCustomSize="True" FontSize="26" LabelText="中国远征军是抗日战争时期&#xA;中国入缅对日作战部队，亦称&#xA;“中国赴缅远征军”。1941年&#xA;12月根据《中英共同防御滇缅&#xA;路协定》编成，远征军受盟军&#xA;中国战区参谋长史迪威中将和&#xA;罗卓英司令长官指挥。该军由&#xA;第5、第6、第66军编成，计9&#xA;个师10万余人。中国远征军是&#xA;中国与盟国直接进行军事合作&#xA;的典范，也是甲午战争以来中&#xA;国军队首次出国作战。1943年&#xA;10月至1945年3月，中国驻印&#xA;军和中国远征军在缅北、滇西&#xA;反攻中，收复缅北大小城镇50&#xA;余座，收复滇西失地8.3万平方&#xA;公里，共歼灭日军4.9万余人。&#xA;中国军队也付出了重大牺牲，&#xA;伤亡官兵约6.7万人。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="351.0000" Y="494.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="205.6017" Y="341.2095" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="0" G="0" B="0" />
+                    <PrePosition X="0.4895" Y="0.5687" />
+                    <PreSize X="0.8357" Y="0.8233" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint />
+                <Position X="201.6171" Y="289.2734" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2403" Y="0.2118" />
+                <PreSize X="0.5006" Y="0.1464" />
+                <SingleColor A="255" R="255" G="150" B="100" />
+                <FirstColor A="255" R="255" G="150" B="100" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+                <InnerNodeSize Width="420" Height="600" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Button_6" CanEdit="False" ActionTag="-1464708454" Tag="47" IconVisible="False" LeftMargin="649.6476" RightMargin="58.3524" TopMargin="200.2458" BottomMargin="1031.7542" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="101" Scale9Height="112" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="131.0000" Y="134.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="715.1476" Y="1098.7542" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.8524" Y="0.8044" />
+                <PreSize X="0.1561" Y="0.0981" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="Normal" Path="cardDetail/close.png" Plist="" />
+                <PressedFileData Type="Normal" Path="cardDetail/close.png" Plist="" />
+                <NormalFileData Type="Normal" Path="cardDetail/close.png" Plist="" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <SingleColor A="255" R="0" G="0" B="0" />
+            <FirstColor A="255" R="150" G="200" B="255" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

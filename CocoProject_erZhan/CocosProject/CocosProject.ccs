@@ -166,6 +166,15 @@
           <Image Name="riJun_Hei.png" />
           <Image Name="yingJun.png" />
         </Folder>
+        <Folder Name="cardDetail">
+          <Image Name="attack_range.png" />
+          <Image Name="bg.png" />
+          <Image Name="blood.png" />
+          <Image Name="close.png" />
+          <Image Name="defance.png" />
+          <Image Name="fire.png" />
+        </Folder>
+        <Image Name="touming.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
