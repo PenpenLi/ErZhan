@@ -265,20 +265,16 @@
               <AbstractNodeData Name="cardBg_1_10" ActionTag="-1664346280" Tag="30" IconVisible="False" LeftMargin="243.0682" RightMargin="425.9318" TopMargin="655.3297" BottomMargin="529.6703" ctype="SpriteObjectData">
                 <Size X="160.0000" Y="181.0000" />
                 <Children>
-                  <AbstractNodeData Name="Button_nouse" ActionTag="1586692379" Tag="34" IconVisible="False" LeftMargin="4.1758" RightMargin="1.8242" TopMargin="5.5954" BottomMargin="1.4046" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="124" Scale9Height="152" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                  <AbstractNodeData Name="guoJun_1_10" ActionTag="1532703343" Tag="66" IconVisible="False" LeftMargin="-0.6071" RightMargin="6.6071" TopMargin="1.9094" BottomMargin="5.0906" ctype="SpriteObjectData">
                     <Size X="154.0000" Y="174.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="81.1758" Y="88.4046" />
+                    <Position X="76.3929" Y="92.0906" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5073" Y="0.4884" />
+                    <PrePosition X="0.4775" Y="0.5088" />
                     <PreSize X="0.9625" Y="0.9613" />
-                    <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="Normal" Path="hallAllCards/guoJun_10.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="hallAllCards/guoJun_10.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="hallAllCards/guoJun_10.png" Plist="" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <FileData Type="Normal" Path="hallAllCards/guoJun_10.png" Plist="" />
+                    <BlendFunc Src="770" Dst="771" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="Button_Hall_10" ActionTag="-701012854" Tag="64" IconVisible="False" LeftMargin="-2.7657" RightMargin="-2.2343" TopMargin="10.9244" BottomMargin="5.0756" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="3" RightEage="3" TopEage="3" BottomEage="3" Scale9OriginX="3" Scale9OriginY="3" Scale9Width="4" Scale9Height="4" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="165.0000" Y="165.0000" />
@@ -566,7 +562,7 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="1350" Height="126" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Panel_Card_Detail" ActionTag="2053496330" VisibleForFrame="False" Tag="45" IconVisible="False" LeftMargin="-419.5000" RightMargin="-419.5000" TopMargin="-683.0000" BottomMargin="-683.0000" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="Panel_Card_Detail" Visible="False" ActionTag="2053496330" VisibleForFrame="False" Tag="45" IconVisible="False" LeftMargin="-419.5000" RightMargin="-419.5000" TopMargin="-683.0000" BottomMargin="-683.0000" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="839.0000" Y="1366.0000" />
             <Children>
               <AbstractNodeData Name="bg_1" CanEdit="False" ActionTag="1427097790" Tag="46" IconVisible="False" LeftMargin="38.0905" RightMargin="49.9095" TopMargin="211.0509" BottomMargin="210.9491" ctype="SpriteObjectData">
