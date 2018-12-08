@@ -500,6 +500,13 @@ function ItemStoreUI:onEnter()
     self._tipFrame:setSwallowTouches(false)
     print("ItemStoreUI:onEnter() 3")
 
+    -- 预加载3个受击特效
+    self.effAniData   = require("app.properties.EffectProperties")
+    EffectAniCache.addEffectAniCache("effect_JiGuangQiang_Hitted",self.effAniData.effect_JiGuangQiang_Hitted) 
+    EffectAniCache.addEffectAniCache("effect_JuJi_Hitted",self.effAniData.effect_JuJi_Hitted)  
+    EffectAniCache.addEffectAniCache("effect_ZhaDan_Hitted",self.effAniData.effect_ZhaDan_Hitted)  
+
+
     -- print("ItemStoreUI:onEnter()")
     -- local finger = EffectAniCache.getFingerInHall()
     -- print("ItemStoreUI:onEnter("))
@@ -832,28 +839,49 @@ function ItemStoreUI:showTurnTip(isEnemy)
     if not self.turnCount then
         self.turnCount = 0
     end
-    self.studioPage["Panel_Turn"]:setVisible(true)
+    
     if isEnemy then
         self.turnCount = self.turnCount + 1
         self.studioPage["Img_Turn_Img"]:loadTexture("fightImgs/yourTurnImg.png")
 
-        local function timer()
-            self.studioPage["Panel_Turn"]:setVisible(false)
-            self:enemyTurn()
+        local function timer1()
+            
+            self.studioPage["Panel_Turn"]:setVisible(true)
+            local function timer2()
+                self.studioPage["Panel_Turn"]:setVisible(false)
+                local function timer3()
+                    self:enemyTurn()
+                end
+                -- 延迟3s显示对方手牌
+                scheduler.performWithDelayGlobal(timer3,0.5, false)
+            end
+            -- 延迟3s显示对方手牌
+            scheduler.performWithDelayGlobal(timer2, 1, false)
         end
         -- 延迟3s显示对方手牌
-        scheduler.performWithDelayGlobal(timer,1.5, false)
+        scheduler.performWithDelayGlobal(timer1,0.5, false)
         
     else
         self.studioPage["Img_Turn_Img"]:loadTexture("fightImgs/myTurnImg.png")
-        self.studioPage["turnImg"]:loadTexture("fightImgs/turn"..self.turnCount..".png")
+        
 
-        local function timer()
-            self.studioPage["Panel_Turn"]:setVisible(false)
-            self:myTurn()
+        local function timer1()
+            self.studioPage["Panel_Turn"]:setVisible(true)
+            self.studioPage["turnImg"]:loadTexture("fightImgs/turn"..self.turnCount..".png")
+            
+            local function timer2()
+                self.studioPage["Panel_Turn"]:setVisible(false)
+                local function timer3()
+                    self:myTurn()
+                end
+                -- 延迟3s显示对方手牌
+                scheduler.performWithDelayGlobal(timer3,0.5, false)
+            end
+            -- 延迟3s显示对方手牌
+            scheduler.performWithDelayGlobal(timer2, 1, false)
         end
         -- 延迟3s显示对方手牌
-        scheduler.performWithDelayGlobal(timer,1.5, false)
+        scheduler.performWithDelayGlobal(timer1,0.5, false)
     end
 
     
@@ -1177,6 +1205,7 @@ function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc,
 
     local act1 = cc.DelayTime:create(delayTime)
 
+
     local function finc1( ... )
         self:playAttackedAni(attID, bDead)
         
@@ -1193,7 +1222,13 @@ function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc,
             xueTiaoBeAtt:setPercent(leftBlood/self.allCardsInTable[attID].allBlood * 100)
         end
 
-	-- 发起攻击的卡片自己被消灭了
+        -- 播放被攻击特效
+        local effect, offsetY, offsetX = EffectAniCache.getEffectAniCache("effect_JiGuangQiang_Hitted", false)
+        self.allCardsInTable[attID]:addChild(effect)
+        effect:setScale(0.5)
+        effect:setPosition(offsetX, offsetY)
+
+	    -- 发起攻击的卡片自己被消灭了
         if myLeftBlood and myLeftBlood == 0 then
             local fromNode = self.allCardsInTable[fromID]
             fromNode:setVisible(false)
@@ -1266,7 +1301,12 @@ function ItemStoreUI:playAttackedAni(cardID, bDead)
     print("ItemStoreUI:playAttackedAni 播放被攻击的动画 cardID = "
         ..tostring(cardID).." bDead = "..tostring(bDead))
     if bDead then
-        self.allCardsInTable[cardID]:setVisible(false)
+        -- 过0.5s后再消失
+        local function unVisibleDeadCard( ... )
+            self.allCardsInTable[cardID]:setVisible(false)
+        end
+        scheduler.performWithDelayGlobal(unVisibleDeadCard, 0.5, false)
+        
     end 
 end
 

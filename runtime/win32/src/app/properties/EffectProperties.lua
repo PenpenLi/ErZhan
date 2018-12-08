@@ -1244,6 +1244,36 @@ local CommonEffectData     = {
         centerY         = 2,                        -- 1=脚底为中心，2=体积为中心，3=头顶位中心
         -- offsetY        = -20,                   -- 以底部对齐的时候, Y轴上需要调整的偏移量, 不是以底部对其的时候，不需要配置这个属性
     },  
+
+
+
+    -- 机关枪受击动画
+    effect_JiGuangQiang_Hitted    = {
+        name            = "effect/beHit/effect_JiGuangQiang_Hitted",    -- 记录特效存放的位置
+        count           = 21,                        -- 飙血特效总共有几帧
+        intervalTime    = 0.067,                     -- 飙血特效的播放间隔
+        centerY         = 30,                        -- 1=脚底为中心，2=体积为中心，3=头顶位中心
+        offsetX         = 60,
+        offsetY         = 80,
+    },
+    -- 狙击枪受击动画
+    effect_JuJi_Hitted    = {
+        name            = "effect/beHit/effect_JuJi_Hitted",    -- 记录特效存放的位置
+        count           = 13,                        -- 飙血特效总共有几帧
+        intervalTime    = 0.067,                     -- 飙血特效的播放间隔
+        centerY         = 30,                        -- 1=脚底为中心，2=体积为中心，3=头顶位中心
+        offsetX         = 60,
+        offsetY         = 80,
+    },
+    -- 炸弹受击动画
+    effect_ZhaDan_Hitted    = {
+        name            = "effect/beHit/effect_ZhaDan_Hitted",    -- 记录特效存放的位置
+        count           = 17,                        -- 飙血特效总共有几帧
+        intervalTime    = 0.067,                     -- 飙血特效的播放间隔
+        centerY         = 30,                        -- 1=脚底为中心，2=体积为中心，3=头顶位中心
+        offsetX         = 60,
+        offsetY         = 80,
+    },
 }
 
 return CommonEffectData
