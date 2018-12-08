@@ -416,7 +416,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                             self.studioPage.resultImgNode:setVisible(true)
                             self.studioPage.resultImg:setVisible(true)
                         end
-                        scheduler.performWithDelayGlobal(finc_My_6_4, 0.5, false)
+                        scheduler.performWithDelayGlobal(finc_My_6_4, 1, false)
                     end
                     self:attack(0.5, "KP1008", "KP2000", "D_4", "E_4", finc_My_6_3, 0, nil, true)
                 end
