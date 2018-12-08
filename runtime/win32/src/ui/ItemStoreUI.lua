@@ -86,6 +86,9 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
         if self.showNextLv and self.showNextLv > 0 then return end
         local name = sender:getName()
         if eventType == ccui.TouchEventType.began then
+            -- 播放点击按钮音效
+            AudioMgr.playSound("Hemorrhage")
+
             if name == "Button_My_Card_5" then
                 print("click begin studioPage.Button_My_Card_5")
             elseif name == "Button_hero" then
