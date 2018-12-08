@@ -1262,8 +1262,8 @@ local CommonEffectData     = {
         count           = 13,                        -- 飙血特效总共有几帧
         intervalTime    = 0.067,                     -- 飙血特效的播放间隔
         centerY         = 30,                        -- 1=脚底为中心，2=体积为中心，3=头顶位中心
-        offsetX         = 60,
-        offsetY         = 80,
+        offsetX         = 70,
+        offsetY         = 100,
     },
     -- 炸弹受击动画
     effect_ZhaDan_Hitted    = {
@@ -1271,8 +1271,8 @@ local CommonEffectData     = {
         count           = 17,                        -- 飙血特效总共有几帧
         intervalTime    = 0.067,                     -- 飙血特效的播放间隔
         centerY         = 30,                        -- 1=脚底为中心，2=体积为中心，3=头顶位中心
-        offsetX         = 60,
-        offsetY         = 80,
+        offsetX         = 70,
+        offsetY         = 100,
     },
 }
 

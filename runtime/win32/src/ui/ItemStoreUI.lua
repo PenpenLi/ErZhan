@@ -411,9 +411,12 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                     local function finc_My_6_3( ... )
                         -- 引导点击自己的手牌 B4位部署M3坦克
                         self:moveTableCard(0.1, "KP1008", "D_4", "E_4")
-                        -- 显示结算页面
-                        self.studioPage.resultImgNode:setVisible(true)
-                        self.studioPage.resultImg:setVisible(true)
+                        local function finc_My_6_4( ... )
+                            -- 显示结算页面
+                            self.studioPage.resultImgNode:setVisible(true)
+                            self.studioPage.resultImg:setVisible(true)
+                        end
+                        scheduler.performWithDelayGlobal(finc_My_6_4, 0.5, false)
                     end
                     self:attack(0.5, "KP1008", "KP2000", "D_4", "E_4", finc_My_6_3, 0, nil, true)
                 end
@@ -868,7 +871,7 @@ function ItemStoreUI:showTurnTip(isEnemy)
         local function timer1()
             self.studioPage["Panel_Turn"]:setVisible(true)
             self.studioPage["turnImg"]:loadTexture("fightImgs/turn"..self.turnCount..".png")
-            
+
             local function timer2()
                 self.studioPage["Panel_Turn"]:setVisible(false)
                 local function timer3()
@@ -1224,6 +1227,14 @@ function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc,
 
         -- 播放被攻击特效
         local effect, offsetY, offsetX = EffectAniCache.getEffectAniCache("effect_JiGuangQiang_Hitted", false)
+        -- 炮和坦克发动的攻击播放炸弹受击动画
+        if fromID == "KP1004"
+            or fromID == "KP1005"
+            or fromID == "KP2004"
+            or fromID == "KP2005" then
+            effect, offsetY, offsetX = EffectAniCache.getEffectAniCache("effect_ZhaDan_Hitted", false)
+        end
+
         self.allCardsInTable[attID]:addChild(effect)
         effect:setScale(0.5)
         effect:setPosition(offsetX, offsetY)
@@ -1276,6 +1287,13 @@ function ItemStoreUI:juJi(delayTime, fromID, attID, fromPos, attPos, callFunc, l
 
     local function finc1( ... )
         self:playAttackedAni(attID, bDead)
+
+        -- 播放被攻击特效
+        local effect, offsetY, offsetX = EffectAniCache.getEffectAniCache("effect_JuJi_Hitted", false)
+        self.allCardsInTable[attID]:addChild(effect)
+        effect:setScale(0.5)
+        effect:setPosition(offsetX, offsetY)
+
     end
     local act2 = cc.CallFunc:create(finc1)
     
