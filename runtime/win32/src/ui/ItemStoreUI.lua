@@ -1200,6 +1200,9 @@ function ItemStoreUI:attack(delayTime, fromID, attID, fromPos, attPos, callFunc,
     self:openTableCards(fromID)
     self:openTableCards(attID)
 
+    print("AudioMgr.playSound() fromID = "..tostring(fromID))
+    AudioMgr.playSound(tostring(fromID))
+
     local fromNode = self.allCardsInTable[fromID]
     fromNode:setLocalZOrder(2)
     -- 显示可以移动的步数

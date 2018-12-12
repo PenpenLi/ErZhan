@@ -606,6 +606,21 @@ self.allSound[#self.allSound + 1] = "Arataki"
         self.allSound[#self.allSound + 1] = "Water"
         self.allSound[#self.allSound + 1] = "Weapons"
         self.allSound[#self.allSound + 1] = "Wood"
+
+        self.allSound[#self.allSound + 1] = "KP1002"
+        self.allSound[#self.allSound + 1] = "KP1004"
+        self.allSound[#self.allSound + 1] = "KP1005"
+        self.allSound[#self.allSound + 1] = "KP1007"
+        self.allSound[#self.allSound + 1] = "KP1008"
+        self.allSound[#self.allSound + 1] = "KP1010"
+
+        self.allSound[#self.allSound + 1] = "KP2001"
+        self.allSound[#self.allSound + 1] = "KP2003"
+        self.allSound[#self.allSound + 1] = "KP2004"
+        self.allSound[#self.allSound + 1] = "KP2005"
+        self.allSound[#self.allSound + 1] = "KP2006"
+        self.allSound[#self.allSound + 1] = "KP2007"
+
     end
 
 
