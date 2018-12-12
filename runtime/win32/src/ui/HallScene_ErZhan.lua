@@ -57,10 +57,13 @@ function HallScene_ErZhan:ctor(self, finc, itemIndex)
             end
         end
         if eventType == ccui.TouchEventType.ended then
+            
             print("click end name = "..tostring(name).." self._stepID = "..tostring(self._stepID))
             if name == "Button_To_Fight" then
+                AudioMgr.playSound("toFightScene")
                 viewMgr.show(viewMgr.def.ITEMSTORE_UI)
             elseif name =="Button_My_Cards" then
+                AudioMgr.playSound("toAllCards")
                 viewMgr.show(viewMgr.def.HallAllCardsScene_ErZhan)
             end
         end

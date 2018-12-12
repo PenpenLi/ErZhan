@@ -87,7 +87,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
         local name = sender:getName()
         if eventType == ccui.TouchEventType.began then
             -- 播放点击按钮音效
-            AudioMgr.playSound("Hemorrhage")
+            AudioMgr.playSound("clickInGame")
 
             if name == "Button_My_Card_5" then
                 print("click begin studioPage.Button_My_Card_5")
@@ -412,6 +412,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                         -- 引导点击自己的手牌 B4位部署M3坦克
                         self:moveTableCard(0.1, "KP1008", "D_4", "E_4")
                         local function finc_My_6_4( ... )
+                            AudioEngine.playMusic("music/bgInResult.ogg", true)
                             -- 显示结算页面
                             self.studioPage.resultImgNode:setVisible(true)
                             self.studioPage.resultImg:setVisible(true)
@@ -490,6 +491,8 @@ end
 function ItemStoreUI:onEnter()
     -- 提示玩家点击哪个按钮的图片
     print("ItemStoreUI:onEnter()")
+    AudioEngine.playMusic("music/bgInFight.mp3", true)
+
     self._tipFrame = ccui.ImageView:create("fightImgs/62.png")
     self._tipFrame:retain()
     print("ItemStoreUI:onEnter() 1")
@@ -847,19 +850,27 @@ function ItemStoreUI:showTurnTip(isEnemy)
         self.turnCount = self.turnCount + 1
         self.studioPage["Img_Turn_Img"]:loadTexture("fightImgs/yourTurnImg.png")
 
+        self.studioPage["Panel_Turn"]:setVisible(true)
+        local act1 = cc.FadeIn:create(0.2)
+        self.studioPage["Panel_Turn"]:runAction(act1)
+
         local function timer1()
-            
-            self.studioPage["Panel_Turn"]:setVisible(true)
+
             local function timer2()
-                self.studioPage["Panel_Turn"]:setVisible(false)
+                
+                
+                local act1 = cc.FadeOut:create(0.5)
+                self.studioPage["Panel_Turn"]:runAction(act1)
+
                 local function timer3()
+                    self.studioPage["Panel_Turn"]:setVisible(false)
                     self:enemyTurn()
                 end
                 -- 延迟3s显示对方手牌
-                scheduler.performWithDelayGlobal(timer3,0.5, false)
+                scheduler.performWithDelayGlobal(timer3,0.8, false)
             end
             -- 延迟3s显示对方手牌
-            scheduler.performWithDelayGlobal(timer2, 1, false)
+            scheduler.performWithDelayGlobal(timer2, 1.5, false)
         end
         -- 延迟3s显示对方手牌
         scheduler.performWithDelayGlobal(timer1,0.5, false)
@@ -868,20 +879,27 @@ function ItemStoreUI:showTurnTip(isEnemy)
         self.studioPage["Img_Turn_Img"]:loadTexture("fightImgs/myTurnImg.png")
         
 
+        self.studioPage["Panel_Turn"]:setVisible(true)
+        local act1 = cc.FadeIn:create(0.2)
+        self.studioPage["Panel_Turn"]:runAction(act1)
+
         local function timer1()
-            self.studioPage["Panel_Turn"]:setVisible(true)
             self.studioPage["turnImg"]:loadTexture("fightImgs/turn"..self.turnCount..".png")
 
             local function timer2()
-                self.studioPage["Panel_Turn"]:setVisible(false)
+                
+                local act1 = cc.FadeOut:create(0.5)
+                self.studioPage["Panel_Turn"]:runAction(act1)
+
                 local function timer3()
+                    self.studioPage["Panel_Turn"]:setVisible(false)
                     self:myTurn()
                 end
                 -- 延迟3s显示对方手牌
-                scheduler.performWithDelayGlobal(timer3,0.5, false)
+                scheduler.performWithDelayGlobal(timer3,0.8, false)
             end
             -- 延迟3s显示对方手牌
-            scheduler.performWithDelayGlobal(timer2, 1, false)
+            scheduler.performWithDelayGlobal(timer2, 1.5, false)
         end
         -- 延迟3s显示对方手牌
         scheduler.performWithDelayGlobal(timer1,0.5, false)

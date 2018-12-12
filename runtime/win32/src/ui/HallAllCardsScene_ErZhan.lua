@@ -55,6 +55,7 @@ function HallAllCardsScene_ErZhan:ctor(self, finc, itemIndex)
             end
         end
         if eventType == ccui.TouchEventType.ended then
+            AudioMgr.playSound("cardDetail")
             print("click end name = "..tostring(name).." self._stepID = "..tostring(self._stepID))
             if name == "Button_1" then
                 -- Button_1 点击日军

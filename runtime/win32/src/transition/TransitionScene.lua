@@ -621,6 +621,13 @@ self.allSound[#self.allSound + 1] = "Arataki"
         self.allSound[#self.allSound + 1] = "KP2006"
         self.allSound[#self.allSound + 1] = "KP2007"
 
+        self.allSound[#self.allSound + 1] = "clickInGame"
+        self.allSound[#self.allSound + 1] = "toAllCards"
+        self.allSound[#self.allSound + 1] = "toFightScene"
+        self.allSound[#self.allSound + 1] = "clickInHall"
+        self.allSound[#self.allSound + 1] = "cardDetail"
+
+
     end
 
 

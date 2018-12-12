@@ -13,7 +13,8 @@ local orderHeros = GlobalData.getHeroOrder()
 -- 加载studio导出的选关页面
 -- 第3个参数表示是通过战斗页面点击进来的，点击了第几个道具，然后要默认选中这个道具
 function LoginScene_ErZhan:ctor(self, finc, itemIndex)
-    
+    AudioEngine.playMusic("music/bgInHall.mp3", true)
+
     print("LoginScene_ErZhan:ctor")
     self._stepID = 0
     -- 关闭页面的回调函数
@@ -55,6 +56,7 @@ function LoginScene_ErZhan:ctor(self, finc, itemIndex)
 
         end
         if eventType == ccui.TouchEventType.ended then
+            AudioMgr.playSound("clickInHall")
             print("click end name = "..tostring(name).." self._stepID = "..tostring(self._stepID))
             if name == "Button_Login" or name == "Button_WeChat" then
                 viewMgr.show(viewMgr.def.HallScene_ErZhan_UI)
