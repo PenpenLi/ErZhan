@@ -412,7 +412,7 @@ function ItemStoreUI:ctor(self, finc, itemIndex)
                         -- 引导点击自己的手牌 B4位部署M3坦克
                         self:moveTableCard(0.1, "KP1008", "D_4", "E_4")
                         local function finc_My_6_4( ... )
-                            AudioEngine.playMusic("music/bgInResult.ogg", true)
+                            AudioEngine.playMusic("music/bgInResult.mp3", true)
                             -- 显示结算页面
                             self.studioPage.resultImgNode:setVisible(true)
                             self.studioPage.resultImg:setVisible(true)
