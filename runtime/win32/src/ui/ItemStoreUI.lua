@@ -532,6 +532,28 @@ function ItemStoreUI:onEnter()
     self.openedCards = {}
 
     self:doStep(1)
+
+    -- 自己手牌要显示卡牌纹理
+    -- 第五张手牌显示 29军大刀队
+    -- self.studioPage["Button_My_Card_5"]:loadTextureNormal("fightImgs/tableCards/KP1002.png", 0)
+    -- self.studioPage["Button_My_Card_5"]:loadTexturePressed("fightImgs/tableCards/KP1002.png", 0)
+    -- self.studioPage["Button_My_Card_5"]:loadTextureDisabled("fightImgs/tableCards/KP1002.png", 0)
+    -- -- 第4张手牌显示 中国远征军
+    -- self.studioPage["Button_My_Card_4"]:loadTextureNormal("fightImgs/tableCards/KP1003.png", 0)
+    -- self.studioPage["Button_My_Card_4"]:loadTexturePressed("fightImgs/tableCards/KP1003.png", 0)
+    -- self.studioPage["Button_My_Card_4"]:loadTextureDisabled("fightImgs/tableCards/KP1003.png", 0)
+    -- -- 第3张手牌显示 地雷
+    -- self.studioPage["Button_My_Card_3"]:loadTextureNormal("fightImgs/tableCards/KP1010.png", 0)
+    -- self.studioPage["Button_My_Card_3"]:loadTexturePressed("fightImgs/tableCards/KP1010.png", 0)
+    -- self.studioPage["Button_My_Card_3"]:loadTextureDisabled("fightImgs/tableCards/KP1010.png", 0)
+    -- -- 第2张手牌显示 105MM 炮
+    -- self.studioPage["Button_My_Card_2"]:loadTextureNormal("fightImgs/tableCards/KP1005.png", 0)
+    -- self.studioPage["Button_My_Card_2"]:loadTexturePressed("fightImgs/tableCards/KP1005.png", 0)
+    -- self.studioPage["Button_My_Card_2"]:loadTextureDisabled("fightImgs/tableCards/KP1005.png", 0)
+    -- -- 第1张手牌显示 侦察排
+    -- self.studioPage["Button_My_Card_1"]:loadTextureNormal("fightImgs/tableCards/KP1001.png", 0)
+    -- self.studioPage["Button_My_Card_1"]:loadTexturePressed("fightImgs/tableCards/KP1001.png", 0)
+    -- self.studioPage["Button_My_Card_1"]:loadTextureDisabled("fightImgs/tableCards/KP1001.png", 0)
 end
 
 -- 1 提示自己的第五张牌, 然后放到
@@ -1164,6 +1186,9 @@ function ItemStoreUI:addCardToHand(cardID, isEnemy)
         self.studioPage["Button_My_Card_"..self.myHandCount]:setVisible(true)
         -- self:changeHandCardTex(self.studioPage["Button_My_Card_"..self.myHandCount], cardID)
 
+        self.studioPage["Button_My_Card_"..self.myHandCount]:loadTextureNormal("fightImgs/tableCards/"..tostring(cardID)..".png", 0)
+        self.studioPage["Button_My_Card_"..self.myHandCount]:loadTexturePressed("fightImgs/tableCards/"..tostring(cardID)..".png", 0)
+        self.studioPage["Button_My_Card_"..self.myHandCount]:loadTextureDisabled("fightImgs/tableCards/"..tostring(cardID)..".png", 0)
     else
         print("self.enemyHandCount = "..tostring(self.enemyHandCount))
         self.enemyHandCount = self.enemyHandCount + 1
