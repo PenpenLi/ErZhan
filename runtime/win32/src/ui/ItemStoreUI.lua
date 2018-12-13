@@ -1326,6 +1326,7 @@ function ItemStoreUI:juJi(delayTime, fromID, attID, fromPos, attPos, callFunc, l
     -- 显示可以移动的步数
     self:calMoveCount(fromNode)
 
+    AudioMgr.playSound(tostring(fromID))
 
     local x,y = fromNode:getPosition()
 
