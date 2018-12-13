@@ -45,6 +45,21 @@
                     <FileData Type="Normal" Path="hallAllCards/guoJun_1.png" Plist="" />
                     <BlendFunc Src="770" Dst="771" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="Button_Hall_1" ActionTag="1829787544" Tag="66" IconVisible="False" LeftMargin="4.9890" RightMargin="-9.9890" TopMargin="13.5173" BottomMargin="2.4827" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="3" RightEage="3" TopEage="3" BottomEage="3" Scale9OriginX="3" Scale9OriginY="3" Scale9Width="4" Scale9Height="4" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                    <Size X="165.0000" Y="165.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="87.4890" Y="84.9827" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5468" Y="0.4695" />
+                    <PreSize X="1.0313" Y="0.9116" />
+                    <TextColor A="255" R="65" G="65" B="70" />
+                    <DisabledFileData Type="Normal" Path="touming.png" Plist="" />
+                    <PressedFileData Type="Normal" Path="touming.png" Plist="" />
+                    <NormalFileData Type="Normal" Path="touming.png" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="153.8961" Y="1046.7480" />
@@ -562,7 +577,7 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="1350" Height="126" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Panel_Card_Detail" Visible="False" ActionTag="2053496330" VisibleForFrame="False" Tag="45" IconVisible="False" LeftMargin="-419.5000" RightMargin="-419.5000" TopMargin="-683.0000" BottomMargin="-683.0000" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="Panel_Card_Detail" ActionTag="2053496330" Tag="45" IconVisible="False" LeftMargin="-419.5000" RightMargin="-419.5000" TopMargin="-683.0000" BottomMargin="-683.0000" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="839.0000" Y="1366.0000" />
             <Children>
               <AbstractNodeData Name="bg_1" CanEdit="False" ActionTag="1427097790" Tag="46" IconVisible="False" LeftMargin="38.0905" RightMargin="49.9095" TopMargin="211.0509" BottomMargin="210.9491" ctype="SpriteObjectData">
@@ -575,6 +590,17 @@
                 <PreSize X="0.8951" Y="0.6911" />
                 <FileData Type="Normal" Path="cardDetail/bg.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Text_Card_Name" ActionTag="-855816608" Tag="67" IconVisible="False" LeftMargin="307.1740" RightMargin="301.8260" TopMargin="277.9717" BottomMargin="1042.0283" FontSize="46" LabelText="中国远征军" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="230.0000" Y="46.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="422.1740" Y="1065.0283" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <PrePosition X="0.5032" Y="0.7797" />
+                <PreSize X="0.2741" Y="0.0337" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
               <AbstractNodeData Name="Text_1" ActionTag="-289083280" Tag="49" IconVisible="False" LeftMargin="390.3207" RightMargin="175.6793" TopMargin="394.9451" BottomMargin="919.0549" FontSize="26" LabelText="发动奔袭时行动力为3，&#xA;出奇制胜。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="273.0000" Y="52.0000" />
